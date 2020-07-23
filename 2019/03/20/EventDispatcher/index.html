@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.2.1">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+  
+  <link rel="stylesheet" href="/lib/animate-css/animate.min.css">
+
+<script class="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"blog.a331.info","root":"/","scheme":"Muse","version":"8.0.0-rc.4","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="最近在git上看到一个事件分发的小插件，个人觉得非常有用。 源代码如下： 12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152export class EventDispatcher &amp;#123;  constructor() &amp;#123;    this._l">
+<meta property="og:type" content="article">
+<meta property="og:title" content="EventDispatcher">
+<meta property="og:url" content="blog.a331.info/2019/03/20/EventDispatcher/index.html">
+<meta property="og:site_name" content="陈龙·今朝">
+<meta property="og:description" content="最近在git上看到一个事件分发的小插件，个人觉得非常有用。 源代码如下： 12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152export class EventDispatcher &amp;#123;  constructor() &amp;#123;    this._l">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2019-03-20T14:11:50.000Z">
+<meta property="article:modified_time" content="2020-07-23T05:18:04.898Z">
+<meta property="article:author" content="陈龙">
+<meta property="article:tag" content="javascript">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="blog.a331.info/2019/03/20/EventDispatcher/">
+
+
+<script class="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>EventDispatcher | 陈龙·今朝</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  body { margin-top: 2rem; }
+
+  .use-motion .menu-item,
+  .use-motion .sidebar,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header {
+    visibility: visible;
+  }
+
+  .use-motion .header,
+  .use-motion .site-brand-container .toggle,
+  .use-motion .footer { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle,
+  .use-motion .custom-logo-image {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line {
+    transform: scaleX(1);
+  }
+
+  .search-pop-overlay, .sidebar-nav { display: none; }
+  .sidebar-panel { display: block; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <main class="main">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+        <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">陈龙·今朝</h1>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">飞扬意气追惆怅，越下青尘越不休。一眼平生无限事，曾经陌上少年游。</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+</div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-overview-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <section class="post-toc-wrap sidebar-panel">
+      </section>
+      <!--/noindex-->
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">陈龙</p>
+  <div class="site-description" itemprop="description">知识总结</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives">
+          <span class="site-state-item-count">20</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+        <span class="site-state-item-count">12</span>
+        <span class="site-state-item-name">分类</span>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">19</span>
+        <span class="site-state-item-name">标签</span>
+      </div>
+  </nav>
+</div>
+
+
+
+      </section>
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </header>
+
+      
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div id="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+      <div class="main-inner">
+        
+
+        <div class="content post posts-expand">
+          
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="blog.a331.info/2019/03/20/EventDispatcher/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="陈龙">
+      <meta itemprop="description" content="知识总结">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="陈龙·今朝">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          EventDispatcher
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2019-03-20 22:11:50" itemprop="dateCreated datePublished" datetime="2019-03-20T22:11:50+08:00">2019-03-20</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-07-23 13:18:04" itemprop="dateModified" datetime="2020-07-23T13:18:04+08:00">2020-07-23</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/javascript/" itemprop="url" rel="index"><span itemprop="name">javascript</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>最近在<a href="https://github.com/mrdoob/eventdispatcher.js/" target="_blank" rel="noopener">git</a>上看到一个事件分发的小插件，个人觉得非常有用。</p>
+<p>源代码如下：</p>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="keyword">class</span> EventDispatcher &#123;</span><br><span class="line">  <span class="keyword">constructor</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="keyword">this</span>._listeners = &#123;&#125;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">private</span> _listeners: &#123; [<span class="keyword">type</span>: <span class="built_in">string</span>]: <span class="built_in">Array</span>&lt;<span class="function">(<span class="params">event: Event</span>) =&gt;</span> <span class="built_in">void</span>&gt; &#125;</span><br><span class="line">  addEventListener(<span class="keyword">type</span>, listener) &#123;</span><br><span class="line">    <span class="keyword">const</span> listeners = <span class="keyword">this</span>._listeners</span><br><span class="line">    <span class="keyword">if</span> (listeners[<span class="keyword">type</span>] === <span class="literal">undefined</span>) &#123;</span><br><span class="line">      listeners[<span class="keyword">type</span>] = []</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (listeners[<span class="keyword">type</span>].indexOf(listener) === <span class="number">-1</span>) &#123;</span><br><span class="line">      listeners[<span class="keyword">type</span>].push(listener)</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  hasEventListener(<span class="keyword">type</span>, listener) &#123;</span><br><span class="line">    <span class="keyword">const</span> listeners = <span class="keyword">this</span>._listeners</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> (</span><br><span class="line">      listeners[<span class="keyword">type</span>] !== <span class="literal">undefined</span> &amp;&amp; listeners[<span class="keyword">type</span>].indexOf(listener) !== <span class="number">-1</span></span><br><span class="line">    )</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  removeEventListener(<span class="keyword">type</span>, listener) &#123;</span><br><span class="line">    <span class="keyword">const</span> listeners = <span class="keyword">this</span>._listeners</span><br><span class="line">    <span class="keyword">const</span> listenerArray = listeners[<span class="keyword">type</span>]</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (listenerArray !== <span class="literal">undefined</span>) &#123;</span><br><span class="line">      <span class="keyword">const</span> index = listenerArray.indexOf(listener)</span><br><span class="line"></span><br><span class="line">      <span class="keyword">if</span> (index !== <span class="number">-1</span>) &#123;</span><br><span class="line">        listenerArray.splice(index, <span class="number">1</span>)</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  dispatchEvent(event) &#123;</span><br><span class="line">    <span class="keyword">const</span> listeners = <span class="keyword">this</span>._listeners</span><br><span class="line">    <span class="keyword">const</span> listenerArray = listeners[event.type]</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (listenerArray !== <span class="literal">undefined</span>) &#123;</span><br><span class="line">      event.target = <span class="keyword">this</span></span><br><span class="line"></span><br><span class="line">      <span class="keyword">const</span> array = listenerArray.slice(<span class="number">0</span>)</span><br><span class="line"></span><br><span class="line">      <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>, l = array.length; i &lt; l; i++) &#123;</span><br><span class="line">        array[i].call(<span class="keyword">this</span>, event)</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>源代码实现的很精简</p>
+<ul>
+<li><code>addEventListener</code>：绑定事件，<code>type</code>为事件类型，<code>listener</code>为事件回调函数。</li>
+<li><code>hasEventListener</code>：检查指定类型的回调函数是否存在。</li>
+<li><code>removeEventListener</code>：删除指定事件类型下的函数。</li>
+<li><code>dispatchEvent</code>：触发指定类型的事件，<code>event</code>为传给事件回调函数的参数。</li>
+</ul>
+<p>其用法也比较简单，如下是实际项目中使用代码：</p>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; Measure &#125; <span class="keyword">from</span> <span class="string">'./tools'</span></span><br><span class="line"><span class="keyword">class</span> ModelTool <span class="keyword">extends</span> EventDispatcher &#123;</span><br><span class="line">  <span class="keyword">static</span> Measure = Measure</span><br><span class="line"></span><br><span class="line">  <span class="keyword">constructor</span>(<span class="params">el: HTMLDivElement | <span class="literal">null</span></span>) &#123;</span><br><span class="line">    <span class="keyword">super</span>()</span><br><span class="line">    <span class="keyword">this</span>.core = <span class="keyword">new</span> Core(el)</span><br><span class="line">    <span class="keyword">this</span>.eventBind()</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">public</span> eventBind() &#123;</span><br><span class="line">    <span class="keyword">this</span>.core.el.addEventListener(</span><br><span class="line">      <span class="string">'click'</span>,</span><br><span class="line">      e =&gt; &#123;</span><br><span class="line">        <span class="keyword">const</span> intersection = <span class="keyword">this</span>.core.getFirstIntersection(</span><br><span class="line">          e.clientX,</span><br><span class="line">          e.clientY</span><br><span class="line">        )</span><br><span class="line">        <span class="keyword">this</span>.dispatchEvent(&#123; <span class="keyword">type</span>: <span class="string">'click'</span>, event: e, intersection &#125;)</span><br><span class="line">      &#125;,</span><br><span class="line">      <span class="literal">false</span></span><br><span class="line">    )</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">private</span> core: Core</span><br><span class="line"></span><br><span class="line">  <span class="keyword">public</span> use = &lt;T <span class="keyword">extends</span> Tool&gt;(tool: T): <span class="function"><span class="params">T</span> =&gt;</span> &#123;</span><br><span class="line">    tool.core = <span class="keyword">this</span>.core</span><br><span class="line">    <span class="keyword">if</span> (!_.isNull(tool.action)) <span class="keyword">this</span>.addEventListener(<span class="string">'click'</span>, tool.action)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> tool</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">public</span> remove = <span class="function">(<span class="params">tool: Tool</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">if</span> (!_.isNull(tool.action)) <span class="keyword">this</span>.removeEventListener(<span class="string">'click'</span>, tool.action)</span><br><span class="line">    tool.core = <span class="literal">null</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>在<code>eventBind</code>函数中，将<code>dom(el)</code>的事件进行了绑定，并在点击时分发类型为<code>click</code>的函数。</p>
+<p><code>use</code>函数是一个用来初始化插件的函数，并且会自动将插件内的函数绑定到点击事件之下。</p>
+<p><code>remove</code>是一个清除插件的函数，将插件的点击事件注销。</p>
+<p>假设<code>Measure</code>函数如下：</p>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="keyword">class</span> Measure &#123;</span><br><span class="line">  <span class="keyword">public</span> core: Core | <span class="literal">null</span> = <span class="literal">null</span></span><br><span class="line"></span><br><span class="line">  <span class="keyword">public</span> action: <span class="function">(<span class="params">e: ClickEvent</span>) =&gt;</span> <span class="built_in">void</span> = <span class="function"><span class="params">e</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(e.intersection)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>使用如下：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> modeltool = <span class="keyword">new</span> ModelTool(<span class="built_in">document</span>.getElementById(<span class="string">'container'</span>))</span><br><span class="line">modelTool.use(<span class="keyword">new</span> ModelTool.Measure())</span><br></pre></td></tr></table></figure>
+
+<p>点击 id 为<code>container</code>的元素是会打印出<code>getFirstIntersection</code>方法返回的结果。</p>
+<p>当然这只是<code>EventDispatcher</code>一种使用情景，你也可以使用它来为一个<code>class</code>或者函数制定自定义函数等等。在封装一些组件中非常好用。</p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/javascript/" rel="tag"># javascript</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2019/03/06/css%E6%A8%A1%E5%9D%97%E5%8C%96/" rel="prev" title="css模块化">
+      <i class="fa fa-chevron-left"></i> css模块化
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2019/03/22/localStorage/" rel="next" title="关于设置localStorage过期时间">
+      关于设置localStorage过期时间 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+        </div>
+        
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">陈龙</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/muse/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> 强力驱动
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>
