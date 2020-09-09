@@ -230,7 +230,7 @@
               <span class="post-meta-item-text">发表于</span>
               
 
-              <time title="创建时间：2020-09-09 15:51:16 / 修改时间：16:36:49" itemprop="dateCreated datePublished" datetime="2020-09-09T15:51:16+08:00">2020-09-09</time>
+              <time title="创建时间：2020-09-09 15:51:16 / 修改时间：16:44:48" itemprop="dateCreated datePublished" datetime="2020-09-09T15:51:16+08:00">2020-09-09</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -257,7 +257,7 @@
 <p>假设<code>svg</code>的外框路径代码如下，其中`{{x+*}}`中的x就是文字的长度，我们需要加上后面的数字，并把原先的模板替换掉。</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;path d=<span class="string">"M13.0780339,0.5 L0.574889123,22.2905543 L3.49834121,27.5 L&#123;&#123;x+31&#125;&#125;.7099611,27.5 L&#123;&#123;x+44&#125;&#125;.1969137,5.64739256 L&#123;&#123;x+41&#125;&#125;.4022785,0.5 L13.0780339,0.5 Z"</span>&gt;&lt;<span class="regexp">/path&gt;</span></span><br></pre></td></tr></table></figure>
 
-<h3 id="方法一"><a href="#方法一" class="headerlink" title="方法一"></a>方法一</h3><p>最初我的想法是先用正则把 <code>NaN</code>、<code>NaN</code>、<code>NaN</code>全都匹配出来，然后再通过正则把里面的数字匹配出来，然后和<code>x</code>相加，把得到的最终值替换回去，核心代码如下：</p>
+<h3 id="方法一"><a href="#方法一" class="headerlink" title="方法一"></a>方法一</h3><p>最初我的想法是先用正则把 `{{x+31}}`、`{{x+44}}`、`{{x+41}}`全都匹配出来，然后再通过正则把里面的数字匹配出来，然后和<code>x</code>相加，把得到的最终值替换回去，核心代码如下：</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> svg = <span class="string">'&lt;path d="M13.0780339,0.5 L0.574889123,22.2905543 L3.49834121,27.5 L&#123;&#123;x+31&#125;&#125;.7099611,27.5 L&#123;&#123;x+44&#125;&#125;.1969137,5.64739256 L&#123;&#123;x+41&#125;&#125;.4022785,0.5 L13.0780339,0.5 Z"&gt;&lt;/path&gt;'</span></span><br><span class="line"></span><br><span class="line">svg.match(<span class="regexp">/&#123;&#123;x+.*?&#125;&#125;/g</span>) <span class="comment">// 匹配出模板</span></span><br><span class="line"></span><br><span class="line">string.match(<span class="regexp">/[0-9]+/</span>) <span class="comment">// 匹配出模板里的字符串</span></span><br></pre></td></tr></table></figure>
 
 <h3 id="方法二"><a href="#方法二" class="headerlink" title="方法二"></a>方法二</h3><p>方法一虽然实现起来比较简单，但是看起来比较的low，而且限定只能处理数字，便有了方法二，核心代码如下：</p>
@@ -267,7 +267,7 @@
 <h3 id="方法三"><a href="#方法三" class="headerlink" title="方法三"></a>方法三</h3><p>方法一和二的具体实现代码其实都不少，便有了方法三，核心代码如下：</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> svg = <span class="string">'&lt;path d="M13.0780339,0.5 L0.574889123,22.2905543 L3.49834121,27.5 L&#123;&#123;x+31&#125;&#125;.7099611,27.5 L&#123;&#123;x+44&#125;&#125;.1969137,5.64739256 L&#123;&#123;x+41&#125;&#125;.4022785,0.5 L13.0780339,0.5 Z"&gt;&lt;/path&gt;'</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">parseTemplate</span>(<span class="params">template, x</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">let</span> str = template.replace(<span class="regexp">/&#123;&#123;/g</span>, <span class="string">"$&#123;"</span>).replace(<span class="regexp">/&#125;&#125;/g</span>, <span class="string">"&#125;"</span>);</span><br><span class="line">  <span class="keyword">return</span> <span class="built_in">eval</span>(<span class="string">"`"</span> + str + <span class="string">"`"</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<p>这种方式利用了<code>js</code>的字符串模板运算，将 <code>NaN</code>改成了<code>xxx${x+31}xxx</code>，再通过<code>eval</code>运算直接得出最终想要的字符串。</p>
+<p>这种方式利用了<code>js</code>的字符串模板运算，将 `{{x+31}}`改成了<code>xxx${x+31}xxx</code>，再通过<code>eval</code>运算直接得出最终想要的字符串。</p>
 <p>方法三相对于上两种代码量少了不少，而且也不难理解。</p>
 
       
