@@ -5,6 +5,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
 <meta name="theme-color" content="#222">
 <meta name="generator" content="Hexo 4.2.1">
+
+
   <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
   <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
@@ -13,13 +15,13 @@
 <link rel="stylesheet" href="/css/main.css">
 
 
-<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
-  
-  <link rel="stylesheet" href="/lib/animate-css/animate.min.css">
+
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.1/css/all.min.css">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css">
 
 <script class="hexo-configurations">
     var NexT = window.NexT || {};
-    var CONFIG = {"hostname":"blog.a331.info","root":"/","scheme":"Muse","version":"8.0.0-rc.4","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"path":"search.xml"};
+    var CONFIG = {"hostname":"blog.a331.info","root":"/","images":"/images","scheme":"Pisces","version":"8.0.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}};
   </script>
 
   <meta name="description" content="最近工作中在使用 git 来管理项目，以下是对于一些自己实际遇到一些坑的总结。 git clone之前遇到一个比较特殊的情况，同一个项目下两个分支一个是开发代码，一个是文档工具，切换分支不太方便，通过以下方式来重命名文件夹名称。 1git clone 项目地址 重命名  添加本地仓库刚开始的时候我是使用git add .来添加修改文件到本地仓库的，但有一个由于我的疏忽，我没有在根目下执行这条指令，">
@@ -34,6 +36,7 @@
 <meta property="article:author" content="陈龙">
 <meta property="article:tag" content="git">
 <meta name="twitter:card" content="summary">
+
 
 <link rel="canonical" href="blog.a331.info/2019/03/26/git/">
 
@@ -93,15 +96,17 @@
 
 </head>
 
-<body itemscope itemtype="http://schema.org/WebPage">
-  <div class="container use-motion">
-    <div class="headband"></div>
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
 
-    <main class="main">
-      <header class="header" itemscope itemtype="http://schema.org/WPHeader">
-        <div class="header-inner"><div class="site-brand-container">
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
   <div class="site-nav-toggle">
     <div class="toggle" aria-label="切换导航栏">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
     </div>
   </div>
 
@@ -123,17 +128,26 @@
 
 
 
+<nav class="site-nav">
+  <ul class="main-menu menu">
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+  </ul>
+</nav>
 
 
 
 
 </div>
-          
+        
   
   <div class="toggle sidebar-toggle">
-    <span class="toggle-line toggle-line-first"></span>
-    <span class="toggle-line toggle-line-middle"></span>
-    <span class="toggle-line toggle-line-last"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
   </div>
 
   <aside class="sidebar">
@@ -148,67 +162,82 @@
         </li>
       </ul>
 
-      <!--noindex-->
-      <section class="post-toc-wrap sidebar-panel">
-          <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#git-clone"><span class="nav-number">1.</span> <span class="nav-text">git clone</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#添加本地仓库"><span class="nav-number">2.</span> <span class="nav-text">添加本地仓库</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#新建分支"><span class="nav-number">3.</span> <span class="nav-text">新建分支</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#切换本地默认分支"><span class="nav-number">4.</span> <span class="nav-text">切换本地默认分支</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#git-commit-回退"><span class="nav-number">5.</span> <span class="nav-text">git commit 回退</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#更换远程地址"><span class="nav-number">6.</span> <span class="nav-text">更换远程地址</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#git-区分大小写"><span class="nav-number">7.</span> <span class="nav-text">git 区分大小写</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#git-用户名邮箱等配置"><span class="nav-number">8.</span> <span class="nav-text">git 用户名邮箱等配置</span></a></li></ol></div>
-      </section>
-      <!--/noindex-->
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <section class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#git-clone"><span class="nav-number">1.</span> <span class="nav-text">git clone</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#添加本地仓库"><span class="nav-number">2.</span> <span class="nav-text">添加本地仓库</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#新建分支"><span class="nav-number">3.</span> <span class="nav-text">新建分支</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#切换本地默认分支"><span class="nav-number">4.</span> <span class="nav-text">切换本地默认分支</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#git-commit-回退"><span class="nav-number">5.</span> <span class="nav-text">git commit 回退</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#更换远程地址"><span class="nav-number">6.</span> <span class="nav-text">更换远程地址</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#git-区分大小写"><span class="nav-number">7.</span> <span class="nav-text">git 区分大小写</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#git-用户名邮箱等配置"><span class="nav-number">8.</span> <span class="nav-text">git 用户名邮箱等配置</span></a></li></ol></div>
+        </section>
+        <!--/noindex-->
 
-      <section class="site-overview-wrap sidebar-panel">
-        <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <section class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
   <p class="site-author-name" itemprop="name">陈龙</p>
   <div class="site-description" itemprop="description">知识总结</div>
 </div>
-<div class="site-state-wrap animated">
+<div class="site-state-wrap site-overview-item animated">
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
-          <a href="/archives">
-          <span class="site-state-item-count">23</span>
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">22</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
-        <span class="site-state-item-count">13</span>
+        <span class="site-state-item-count">12</span>
         <span class="site-state-item-name">分类</span>
       </div>
       <div class="site-state-item site-state-tags">
-        <span class="site-state-item-count">23</span>
+        <span class="site-state-item-count">22</span>
         <span class="site-state-item-name">标签</span>
       </div>
   </nav>
 </div>
+  <div class="links-of-author site-overview-item animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/chenlong-frontend" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;chenlong-frontend" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i></a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:2956957982@qq.com" title="E-Mail → mailto:2956957982@qq.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i></a>
+      </span>
+  </div>
 
 
 
-      </section>
+        </section>
+      </div>
     </div>
   </aside>
-  <div id="sidebar-dimmer"></div>
+  <div class="sidebar-dimmer"></div>
 
 
-      </header>
+    </header>
 
-      
+    
   <div class="back-to-top">
     <i class="fa fa-arrow-up"></i>
     <span>0%</span>
   </div>
+  <div class="reading-progress-bar"></div>
 
 <noscript>
-  <div id="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
 </noscript>
 
 
-      <div class="main-inner">
-        
+    <div class="main-inner post posts-expand">
+      
 
-        <div class="content post posts-expand">
-          
+      
 
-    
+  
+
+
+<div class="post-block">
   
   
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="blog.a331.info/2019/03/26/git/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -225,33 +254,35 @@
           git
         </h1>
 
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
 
-              <time title="创建时间：2019-03-26 20:11:50" itemprop="dateCreated datePublished" datetime="2019-03-26T20:11:50+08:00">2019-03-26</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-07-23 13:18:04" itemprop="dateModified" datetime="2020-07-23T13:18:04+08:00">2020-07-23</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/git/" itemprop="url" rel="index"><span itemprop="name">git</span></a>
-                </span>
-            </span>
+      <time title="创建时间：2019-03-26 20:11:50" itemprop="dateCreated datePublished" datetime="2019-03-26T20:11:50+08:00">2019-03-26</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">更新于</span>
+        <time title="修改时间：2020-07-23 13:18:04" itemprop="dateModified" datetime="2020-07-23T13:18:04+08:00">2020-07-23</time>
+      </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/git/" itemprop="url" rel="index"><span itemprop="name">git</span></a>
+        </span>
+    </span>
 
-          
+  
+</div>
 
         </div>
       </header>
@@ -260,8 +291,6 @@
     
     
     <div class="post-body" itemprop="articleBody">
-
-      
         <p>最近工作中在使用 git 来管理项目，以下是对于一些自己实际遇到一些坑的总结。</p>
 <h2 id="git-clone"><a href="#git-clone" class="headerlink" title="git clone"></a>git clone</h2><p>之前遇到一个比较特殊的情况，同一个项目下两个分支一个是开发代码，一个是文档工具，切换分支不太方便，通过以下方式来重命名文件夹名称。</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git clone 项目地址 重命名</span><br></pre></td></tr></table></figure>
@@ -288,36 +317,35 @@
     
     
 
-      <footer class="post-footer">
+    <footer class="post-footer">
           <div class="post-tags">
               <a href="/tags/git/" rel="tag"># git</a>
           </div>
 
         
 
-
-        
-    <div class="post-nav">
-      <div class="post-nav-item">
-    <a href="/2019/03/22/localStorage/" rel="prev" title="关于设置localStorage过期时间">
-      <i class="fa fa-chevron-left"></i> 关于设置localStorage过期时间
-    </a></div>
-      <div class="post-nav-item">
-    <a href="/2019/04/12/react%E8%84%9A%E6%89%8B%E6%9E%B6/" rel="next" title="react脚手架">
-      react脚手架 <i class="fa fa-chevron-right"></i>
-    </a></div>
-    </div>
-      </footer>
-    
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2019/03/22/localStorage/" rel="prev" title="关于设置localStorage过期时间">
+                  <i class="fa fa-chevron-left"></i> 关于设置localStorage过期时间
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2019/04/12/react%E8%84%9A%E6%89%8B%E6%9E%B6/" rel="next" title="react脚手架">
+                  react脚手架 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
   </article>
-  
-  
-  
+</div>
 
 
 
-        </div>
-        
+
+
+
+      
 
 <script>
   window.addEventListener('tabs:register', () => {
@@ -326,7 +354,7 @@
       activeClass = localStorage.getItem('comments_active') || activeClass;
     }
     if (activeClass) {
-      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      const activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
       if (activeTab) {
         activeTab.click();
       }
@@ -335,20 +363,20 @@
   if (CONFIG.comments.storage) {
     window.addEventListener('tabs:click', event => {
       if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
-      let commentClass = event.target.classList[1];
+      const commentClass = event.target.classList[1];
       localStorage.setItem('comments_active', commentClass);
     });
   }
 </script>
 
-      </div>
-    </main>
+    </div>
+  </main>
 
-    <footer class="footer">
-      <div class="footer-inner">
-        
+  <footer class="footer">
+    <div class="footer-inner">
+      
 
-        
+      
 
 <div class="copyright">
   
@@ -359,35 +387,15 @@
   </span>
   <span class="author" itemprop="copyrightHolder">陈龙</span>
 </div>
-  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/muse/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> 强力驱动
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/pisces/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> 强力驱动
   </div>
 
-        
-
-
-
-
-
-
-
-
-      </div>
-    </footer>
-  </div>
+    </div>
+  </footer>
 
   
-  <script src="/lib/anime.min.js"></script>
-
-<script src="/js/utils.js"></script>
-
-<script src="/js/motion.js"></script>
-
-
-<script src="/js/schemes/muse.js"></script>
-
-
-<script src="/js/next-boot.js"></script>
-
+  <script src="//cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
 
   
 
@@ -397,6 +405,18 @@
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+  
 
 
 

@@ -5,6 +5,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
 <meta name="theme-color" content="#222">
 <meta name="generator" content="Hexo 4.2.1">
+
+
   <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
   <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
@@ -13,13 +15,13 @@
 <link rel="stylesheet" href="/css/main.css">
 
 
-<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
-  
-  <link rel="stylesheet" href="/lib/animate-css/animate.min.css">
+
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.1/css/all.min.css">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css">
 
 <script class="hexo-configurations">
     var NexT = window.NexT || {};
-    var CONFIG = {"hostname":"blog.a331.info","root":"/","scheme":"Muse","version":"8.0.0-rc.4","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"path":"search.xml"};
+    var CONFIG = {"hostname":"blog.a331.info","root":"/","images":"/images","scheme":"Pisces","version":"8.0.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}};
   </script>
 
   <meta name="description" content="函数式编程在刚接触 js 的时候便听说了，16 年下半年便买了书来看，不过一直都不得甚解，现在再回过头来看看，慢慢理解 函数式编程技术 确定抽象，并为其构建函数。 利用已有的函数来构建更为复杂的抽象。 通过将现有的函数传给其他的函数来构建更加复杂的抽象。  高阶函数一个高阶函数应该可以执行下列至少一项操作：  以一个函数作为参数。 返回一个函数作为结果。 他是一等公民  一等公民函数 可以存储在变">
@@ -35,6 +37,7 @@
 <meta property="article:tag" content="javascript">
 <meta property="article:tag" content="函数式">
 <meta name="twitter:card" content="summary">
+
 
 <link rel="canonical" href="blog.a331.info/2019/02/18/JS%E5%87%BD%E6%95%B0%E5%BC%8F%E7%BC%96%E7%A8%8B01/">
 
@@ -94,15 +97,17 @@
 
 </head>
 
-<body itemscope itemtype="http://schema.org/WebPage">
-  <div class="container use-motion">
-    <div class="headband"></div>
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
 
-    <main class="main">
-      <header class="header" itemscope itemtype="http://schema.org/WPHeader">
-        <div class="header-inner"><div class="site-brand-container">
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
   <div class="site-nav-toggle">
     <div class="toggle" aria-label="切换导航栏">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
     </div>
   </div>
 
@@ -124,17 +129,26 @@
 
 
 
+<nav class="site-nav">
+  <ul class="main-menu menu">
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+  </ul>
+</nav>
 
 
 
 
 </div>
-          
+        
   
   <div class="toggle sidebar-toggle">
-    <span class="toggle-line toggle-line-first"></span>
-    <span class="toggle-line toggle-line-middle"></span>
-    <span class="toggle-line toggle-line-last"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
   </div>
 
   <aside class="sidebar">
@@ -149,67 +163,82 @@
         </li>
       </ul>
 
-      <!--noindex-->
-      <section class="post-toc-wrap sidebar-panel">
-          <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#函数式编程技术"><span class="nav-number">1.</span> <span class="nav-text">函数式编程技术</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#高阶函数"><span class="nav-number">2.</span> <span class="nav-text">高阶函数</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#一等公民函数"><span class="nav-number">2.1.</span> <span class="nav-text">一等公民函数</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#函数、方法"><span class="nav-number">3.</span> <span class="nav-text">函数、方法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Applicarive-编程"><span class="nav-number">4.</span> <span class="nav-text">Applicarive 编程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#函数抽象思考"><span class="nav-number">5.</span> <span class="nav-text">函数抽象思考</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#返回其他函数的函数"><span class="nav-number">6.</span> <span class="nav-text">返回其他函数的函数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#柯里化"><span class="nav-number">7.</span> <span class="nav-text">柯里化</span></a></li></ol></div>
-      </section>
-      <!--/noindex-->
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <section class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#函数式编程技术"><span class="nav-number">1.</span> <span class="nav-text">函数式编程技术</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#高阶函数"><span class="nav-number">2.</span> <span class="nav-text">高阶函数</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#一等公民函数"><span class="nav-number">2.1.</span> <span class="nav-text">一等公民函数</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#函数、方法"><span class="nav-number">3.</span> <span class="nav-text">函数、方法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Applicarive-编程"><span class="nav-number">4.</span> <span class="nav-text">Applicarive 编程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#函数抽象思考"><span class="nav-number">5.</span> <span class="nav-text">函数抽象思考</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#返回其他函数的函数"><span class="nav-number">6.</span> <span class="nav-text">返回其他函数的函数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#柯里化"><span class="nav-number">7.</span> <span class="nav-text">柯里化</span></a></li></ol></div>
+        </section>
+        <!--/noindex-->
 
-      <section class="site-overview-wrap sidebar-panel">
-        <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <section class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
   <p class="site-author-name" itemprop="name">陈龙</p>
   <div class="site-description" itemprop="description">知识总结</div>
 </div>
-<div class="site-state-wrap animated">
+<div class="site-state-wrap site-overview-item animated">
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
-          <a href="/archives">
-          <span class="site-state-item-count">23</span>
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">22</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
-        <span class="site-state-item-count">13</span>
+        <span class="site-state-item-count">12</span>
         <span class="site-state-item-name">分类</span>
       </div>
       <div class="site-state-item site-state-tags">
-        <span class="site-state-item-count">23</span>
+        <span class="site-state-item-count">22</span>
         <span class="site-state-item-name">标签</span>
       </div>
   </nav>
 </div>
+  <div class="links-of-author site-overview-item animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/chenlong-frontend" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;chenlong-frontend" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i></a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:2956957982@qq.com" title="E-Mail → mailto:2956957982@qq.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i></a>
+      </span>
+  </div>
 
 
 
-      </section>
+        </section>
+      </div>
     </div>
   </aside>
-  <div id="sidebar-dimmer"></div>
+  <div class="sidebar-dimmer"></div>
 
 
-      </header>
+    </header>
 
-      
+    
   <div class="back-to-top">
     <i class="fa fa-arrow-up"></i>
     <span>0%</span>
   </div>
+  <div class="reading-progress-bar"></div>
 
 <noscript>
-  <div id="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
 </noscript>
 
 
-      <div class="main-inner">
-        
+    <div class="main-inner post posts-expand">
+      
 
-        <div class="content post posts-expand">
-          
+      
 
-    
+  
+
+
+<div class="post-block">
   
   
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="blog.a331.info/2019/02/18/JS%E5%87%BD%E6%95%B0%E5%BC%8F%E7%BC%96%E7%A8%8B01/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -226,33 +255,35 @@
           JS函数式编程01
         </h1>
 
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
 
-              <time title="创建时间：2019-02-18 22:21:16" itemprop="dateCreated datePublished" datetime="2019-02-18T22:21:16+08:00">2019-02-18</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-07-23 13:18:04" itemprop="dateModified" datetime="2020-07-23T13:18:04+08:00">2020-07-23</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/javascript/" itemprop="url" rel="index"><span itemprop="name">javascript</span></a>
-                </span>
-            </span>
+      <time title="创建时间：2019-02-18 22:21:16" itemprop="dateCreated datePublished" datetime="2019-02-18T22:21:16+08:00">2019-02-18</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">更新于</span>
+        <time title="修改时间：2020-07-23 13:18:04" itemprop="dateModified" datetime="2020-07-23T13:18:04+08:00">2020-07-23</time>
+      </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/javascript/" itemprop="url" rel="index"><span itemprop="name">javascript</span></a>
+        </span>
+    </span>
 
-          
+  
+</div>
 
         </div>
       </header>
@@ -261,8 +292,6 @@
     
     
     <div class="post-body" itemprop="articleBody">
-
-      
         <p>函数式编程在刚接触 js 的时候便听说了，16 年下半年便买了书来看，不过一直都不得甚解，现在再回过头来看看，慢慢理解</p>
 <h2 id="函数式编程技术"><a href="#函数式编程技术" class="headerlink" title="函数式编程技术"></a>函数式编程技术</h2><ol>
 <li>确定抽象，并为其构建函数。</li>
@@ -344,7 +373,7 @@
     
     
 
-      <footer class="post-footer">
+    <footer class="post-footer">
           <div class="post-tags">
               <a href="/tags/javascript/" rel="tag"># javascript</a>
               <a href="/tags/%E5%87%BD%E6%95%B0%E5%BC%8F/" rel="tag"># 函数式</a>
@@ -352,29 +381,28 @@
 
         
 
-
-        
-    <div class="post-nav">
-      <div class="post-nav-item">
-    <a href="/2019/02/13/treeInReact/" rel="prev" title="rc-tree 源码解读">
-      <i class="fa fa-chevron-left"></i> rc-tree 源码解读
-    </a></div>
-      <div class="post-nav-item">
-    <a href="/2019/02/22/%E6%A8%A1%E5%9D%97%E6%89%93%E5%8C%85/webpack01/" rel="next" title="webpack -ts">
-      webpack -ts <i class="fa fa-chevron-right"></i>
-    </a></div>
-    </div>
-      </footer>
-    
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2019/02/13/treeInReact/" rel="prev" title="rc-tree 源码解读">
+                  <i class="fa fa-chevron-left"></i> rc-tree 源码解读
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2019/02/22/%E6%A8%A1%E5%9D%97%E6%89%93%E5%8C%85/webpack01/" rel="next" title="webpack -ts">
+                  webpack -ts <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
   </article>
-  
-  
-  
+</div>
 
 
 
-        </div>
-        
+
+
+
+      
 
 <script>
   window.addEventListener('tabs:register', () => {
@@ -383,7 +411,7 @@
       activeClass = localStorage.getItem('comments_active') || activeClass;
     }
     if (activeClass) {
-      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      const activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
       if (activeTab) {
         activeTab.click();
       }
@@ -392,20 +420,20 @@
   if (CONFIG.comments.storage) {
     window.addEventListener('tabs:click', event => {
       if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
-      let commentClass = event.target.classList[1];
+      const commentClass = event.target.classList[1];
       localStorage.setItem('comments_active', commentClass);
     });
   }
 </script>
 
-      </div>
-    </main>
+    </div>
+  </main>
 
-    <footer class="footer">
-      <div class="footer-inner">
-        
+  <footer class="footer">
+    <div class="footer-inner">
+      
 
-        
+      
 
 <div class="copyright">
   
@@ -416,35 +444,15 @@
   </span>
   <span class="author" itemprop="copyrightHolder">陈龙</span>
 </div>
-  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/muse/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> 强力驱动
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/pisces/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> 强力驱动
   </div>
 
-        
-
-
-
-
-
-
-
-
-      </div>
-    </footer>
-  </div>
+    </div>
+  </footer>
 
   
-  <script src="/lib/anime.min.js"></script>
-
-<script src="/js/utils.js"></script>
-
-<script src="/js/motion.js"></script>
-
-
-<script src="/js/schemes/muse.js"></script>
-
-
-<script src="/js/next-boot.js"></script>
-
+  <script src="//cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
 
   
 
@@ -454,6 +462,18 @@
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+  
 
 
 
