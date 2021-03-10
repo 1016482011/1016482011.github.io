@@ -123,90 +123,6 @@
       </tags>
   </entry>
   <entry>
-    <title>JS权威指南</title>
-    <url>/2019/02/26/JS%E6%9D%83%E5%A8%81%E6%8C%87%E5%8D%97/</url>
-    <content><![CDATA[<p>《JS 权威指南》是我最喜爱的一本书，最早接触前端是在 2015 年（大二）年底的寒假，起初我只是单纯的对 js 在浏览器的表现感兴趣，后来通过 js 了解了 html，css，php，之后就一发不可收拾，彻底爱上了 web 这一行。</p>
-<p>起初的学习比较迷茫，与前端相关的、不相关的都花时间去了解学习实践，学习初期主要是 bootstrap、jquery、thinkphp，主要是是一些当时算是比较流行的一些类库和框架，平时也会看一些网络、数据结构、数据库方面的知识。但随着时间的推移，实践的增加，越发觉得自己在解决问题的能力上很欠缺，主要是 css 和 js 上的。每次遇到一个 js 问题，我都需要去网上搜索答案，往往搜到的答案只是提供直接的解决方法，对于发生此问题的原因只有一个简短的说明，作为小白的我经常看的一脸懵逼，貌似懂了，但又不太懂。</p>
-<p>一次偶尔的机会大三上学期，我在学校图书馆找书时，看到了权威指南这本书，第一眼就被它厚厚的身板吸引住了，有一千页，这让我很好奇教学视频里几个小时就能讲完的内容为何需要这么多页去讲解。在简单翻阅了几章之后，瞬间让我有种相见很晚的感觉，于是便自己在网上买了一本，看完这本书花了我不少时间，一共看了 3 遍，历时大半年，当初看的时候顿时觉得之前 js 都是白学了，当初遇到的一些问题现在回想起来也都明白了个七七八八。</p>
-<p>后来在大三下学期，我再一次精读了此书的前 500 页，并把其中的内容做了摘录，并在近期发布到了 gitbook 上，其内容可通过如下地址访问：</p>
-<p><a href="https://2956957982.gitbook.io/js/" target="_blank" rel="noopener">https://2956957982.gitbook.io/js/</a></p>
-]]></content>
-      <categories>
-        <category>javascript</category>
-      </categories>
-      <tags>
-        <tag>javascript</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>css模块化</title>
-    <url>/2019/03/06/css%E6%A8%A1%E5%9D%97%E5%8C%96/</url>
-    <content><![CDATA[<p>目前主流的 css 规范大致可以分为<code>OOCSS</code>、<code>SMACSS</code>、<code>BEM</code>、<code>CSS Modules</code>、<code>CSS in JS</code></p>
-<p>在以往写 css 的时候比较随意，加上平时主要精力都在<code>js</code>开发上，对 css 的写法知之甚少，但随着工作时间的增加（快一年了），发现自己一直在重复的写一些 css 代码，并且这些代码维护起来也比较困难，每次需要改一个样式时，都需要在浏览器中使用控制台的<code>Element</code>查看需要修改区域的<code>dom</code>的<code>class</code>，然后通过在<code>css</code>中进行搜索才能定位到问题样式所在。从我个人开发体验上来讲，感到明显的效率低下和维护困难。</p>
-<p>后来在学习的过程中发现了<code>less</code>和<code>sass</code>，但这两个<code>css</code>的预编译框架并没有在写法上提出严格的限制，之前的问题依旧存在。</p>
-<h2 id="OOCSS"><a href="#OOCSS" class="headerlink" title="OOCSS"></a>OOCSS</h2><p>全称<code>Object Oriented CSS</code>，中文为面向对象 css，其主要有两个原则：</p>
-<ol>
-<li><code>Separation of Structure from Skin</code> 独立的结构和样式</li>
-<li><code>Separation of Containers and Content</code> 独立的容器和内容</li>
-</ol>
-<p>所谓结构就是元素的大小，样式指颜色等等，第二点即是指将 html 与 css 进行分离，并对 class 进行抽象剥离，我的理解就是，不要将 class 与你具体页面做关联，比如你在开发<code>home</code>页，在实现其中的导航时，class 命名不要带上<code>home</code></p>
-<p><code>OOCSS</code>的典型代表为<code>Bootstrap</code>，以其<code>button</code>为例：</p>
-<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">button</span> <span class="attr">type</span>=<span class="string">"button"</span> <span class="attr">class</span>=<span class="string">"btn btn-primary btn-lg btn-block"</span>&gt;</span></span><br><span class="line">  button</span><br><span class="line"><span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<p>可以很容易的看出，其主要分为其他几部分</p>
-<ol>
-<li><code>btn</code>：标准按钮样式</li>
-<li><code>btn-primary</code>：按钮颜色</li>
-<li><code>btn-lg</code>：按钮大小</li>
-<li><code>btn-block</code>：展示为块级按钮</li>
-</ol>
-<p>通过不同的<code>class</code>组合，就可以形成多种按钮</p>
-<p><code>OOCSS</code>的优点如下：</p>
-<ol>
-<li>减少 css 代码</li>
-<li>html 标记简洁，逻辑性强</li>
-<li>语义标记，有利于 SEO</li>
-<li>由于各种 class 可重用，页面加载更快</li>
-<li>拓展性强，不用担心加入的新组件会破坏原有的组件</li>
-<li>有利于维护</li>
-</ol>
-<p>同时<code>OOCSS</code>使用时需要注意如下几点：</p>
-<ol>
-<li><code>OOCSS</code>主要用于大型网站开发，组件复用情况多</li>
-<li><code>OOCSS</code>在整体规划上难度颇高，需要有一定的经验的积累，如果使用不当，将会毫无复用性可言，维护也将异常艰难</li>
-<li>每个组件都需要一个完善的文档</li>
-</ol>
-<h2 id="SMACSS"><a href="#SMACSS" class="headerlink" title="SMACSS"></a>SMACSS</h2><p>了解不多，其通则为：</p>
-<ol>
-<li>结构分类：Base、Layout、Moudule、State、Theme</li>
-<li>命名规则：id 与 class 受限制的使用，名称之间使用分隔线</li>
-</ol>
-<h2 id="BEM"><a href="#BEM" class="headerlink" title="BEM"></a>BEM</h2><p><code>BEM</code>全称<code>Block Element Modifier</code>，<code>BEM</code>吸收了<code>OOCSS</code>的优点，并将 class 分块语义化，在可读性和维护性上个人认为高于<code>OOCSS</code></p>
-<p><code>BEM</code>是目前我在实际开发中使用体验最好的一个规范，由于<code>BEM</code>只是一个规范，有些部分并没有做强制要求，实际使用时我会根据自身经验和项目情况做一些调整，以当前项目使用情况为例：</p>
-<p>styles 文件夹的文件可分为四块</p>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">index.less</span><br><span class="line">lib - lay.less</span><br><span class="line">mod - modal.less</span><br><span class="line">pag - home.less</span><br></pre></td></tr></table></figure>
-
-<p><code>lib</code>开头的是一些基础的样式或者颜色字体等变量，通用布局和样式重置等，<code>mod</code>是各个组件样式，<code>pag</code>是页面内特殊样式</p>
-<p>以 modal 为例：</p>
-<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="selector-class">.m-modal</span> &#123;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.m-modal__header</span> &#123;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.m-modal__body</span> &#123;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.m-modal__body--nofooter</span> &#123;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.m-modal__footer</span> &#123;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p><code>m-modal</code>是<code>Block</code>，<code>header</code>、<code>body</code>、<code>footer</code>是<code>Element</code>，<code>nofooter</code>为<code>Modifier</code>，B 与 M 之间使用<code>__</code>分隔，E 与 M 之间使用<code>--</code>分隔，class 在命名时，最多三段，相比其他规范在保持简短的同时提供了 class 的可读性。</p>
-<p>每个模块之间都是独立的，以组件进行开发，这点与<code>OOCSS</code>很像，<code>BEM</code>可复用性好。另外<code>BEM</code>是功能为导向的，每个模块代表着某个功能，不会出现<code>OOCSS</code>或者<code>SMASS</code>中像<code>.pt-20</code>(<code>padding-top:20px</code>)这种让别人看不懂的名称。</p>
-<p>有关 BEM 注意事项可见<a href="https://www.smashingmagazine.com/2016/06/battling-bem-extended-edition-common-problems-and-how-to-avoid-them/" target="_blank" rel="noopener">这里</a></p>
-<h2 id="CSS-Modules"><a href="#CSS-Modules" class="headerlink" title="CSS Modules"></a>CSS Modules</h2><p>在 react 和 vue 中使用过，其做法是给 class 后拼上一串 hash 值，以此保证样式名称不会冲突</p>
-<h2 id="CSS-in-JS"><a href="#CSS-in-JS" class="headerlink" title="CSS in JS"></a>CSS in JS</h2><p>代表为<a href="https://github.com/styled-components/styled-components" target="_blank" rel="noopener">styled-components</a>，即将样式写到组件内部。</p>
-<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p><code>OOCSS</code>和<code>BEM</code>的实施离不开 ui 设计，在开发之前，ui 需要有自己的一套组件库（图片），开发应当在开发具体页面之前首先在代码层面实现 ui 的零散组件，后续开发除非临时需求或者特殊样式，使用这套 ui 库应当就能组合出所需要的页面。</p>
-<p>相对比较而言，最新的两种 css 都需要框架或者编译器的支撑，在普适性上不如前三者，但这两者不存在学习成本，上手比较容易。就目前使用体验来看，<code>BEM</code>具有高复用、高拓展、易维护、易阅读、无捆绑，但由于其需要一定的学习成本和实践摸索，想要用好有一定难度。</p>
-]]></content>
-      <categories>
-        <category>css</category>
-      </categories>
-      <tags>
-        <tag>css</tag>
-        <tag>BEM</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>SuperTinyCompiler</title>
     <url>/2019/07/04/SuperTinyCompiler/</url>
     <content><![CDATA[<p><a href="https://the-super-tiny-compiler.glitch.me/intro" target="_blank" rel="noopener">原文</a></p>
@@ -298,6 +214,90 @@
       </categories>
       <tags>
         <tag>docker</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>JS权威指南</title>
+    <url>/2019/02/26/JS%E6%9D%83%E5%A8%81%E6%8C%87%E5%8D%97/</url>
+    <content><![CDATA[<p>《JS 权威指南》是我最喜爱的一本书，最早接触前端是在 2015 年（大二）年底的寒假，起初我只是单纯的对 js 在浏览器的表现感兴趣，后来通过 js 了解了 html，css，php，之后就一发不可收拾，彻底爱上了 web 这一行。</p>
+<p>起初的学习比较迷茫，与前端相关的、不相关的都花时间去了解学习实践，学习初期主要是 bootstrap、jquery、thinkphp，主要是是一些当时算是比较流行的一些类库和框架，平时也会看一些网络、数据结构、数据库方面的知识。但随着时间的推移，实践的增加，越发觉得自己在解决问题的能力上很欠缺，主要是 css 和 js 上的。每次遇到一个 js 问题，我都需要去网上搜索答案，往往搜到的答案只是提供直接的解决方法，对于发生此问题的原因只有一个简短的说明，作为小白的我经常看的一脸懵逼，貌似懂了，但又不太懂。</p>
+<p>一次偶尔的机会大三上学期，我在学校图书馆找书时，看到了权威指南这本书，第一眼就被它厚厚的身板吸引住了，有一千页，这让我很好奇教学视频里几个小时就能讲完的内容为何需要这么多页去讲解。在简单翻阅了几章之后，瞬间让我有种相见很晚的感觉，于是便自己在网上买了一本，看完这本书花了我不少时间，一共看了 3 遍，历时大半年，当初看的时候顿时觉得之前 js 都是白学了，当初遇到的一些问题现在回想起来也都明白了个七七八八。</p>
+<p>后来在大三下学期，我再一次精读了此书的前 500 页，并把其中的内容做了摘录，并在近期发布到了 gitbook 上，其内容可通过如下地址访问：</p>
+<p><a href="https://2956957982.gitbook.io/js/" target="_blank" rel="noopener">https://2956957982.gitbook.io/js/</a></p>
+]]></content>
+      <categories>
+        <category>javascript</category>
+      </categories>
+      <tags>
+        <tag>javascript</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>css模块化</title>
+    <url>/2019/03/06/css%E6%A8%A1%E5%9D%97%E5%8C%96/</url>
+    <content><![CDATA[<p>目前主流的 css 规范大致可以分为<code>OOCSS</code>、<code>SMACSS</code>、<code>BEM</code>、<code>CSS Modules</code>、<code>CSS in JS</code></p>
+<p>在以往写 css 的时候比较随意，加上平时主要精力都在<code>js</code>开发上，对 css 的写法知之甚少，但随着工作时间的增加（快一年了），发现自己一直在重复的写一些 css 代码，并且这些代码维护起来也比较困难，每次需要改一个样式时，都需要在浏览器中使用控制台的<code>Element</code>查看需要修改区域的<code>dom</code>的<code>class</code>，然后通过在<code>css</code>中进行搜索才能定位到问题样式所在。从我个人开发体验上来讲，感到明显的效率低下和维护困难。</p>
+<p>后来在学习的过程中发现了<code>less</code>和<code>sass</code>，但这两个<code>css</code>的预编译框架并没有在写法上提出严格的限制，之前的问题依旧存在。</p>
+<h2 id="OOCSS"><a href="#OOCSS" class="headerlink" title="OOCSS"></a>OOCSS</h2><p>全称<code>Object Oriented CSS</code>，中文为面向对象 css，其主要有两个原则：</p>
+<ol>
+<li><code>Separation of Structure from Skin</code> 独立的结构和样式</li>
+<li><code>Separation of Containers and Content</code> 独立的容器和内容</li>
+</ol>
+<p>所谓结构就是元素的大小，样式指颜色等等，第二点即是指将 html 与 css 进行分离，并对 class 进行抽象剥离，我的理解就是，不要将 class 与你具体页面做关联，比如你在开发<code>home</code>页，在实现其中的导航时，class 命名不要带上<code>home</code></p>
+<p><code>OOCSS</code>的典型代表为<code>Bootstrap</code>，以其<code>button</code>为例：</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">button</span> <span class="attr">type</span>=<span class="string">"button"</span> <span class="attr">class</span>=<span class="string">"btn btn-primary btn-lg btn-block"</span>&gt;</span></span><br><span class="line">  button</span><br><span class="line"><span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>可以很容易的看出，其主要分为其他几部分</p>
+<ol>
+<li><code>btn</code>：标准按钮样式</li>
+<li><code>btn-primary</code>：按钮颜色</li>
+<li><code>btn-lg</code>：按钮大小</li>
+<li><code>btn-block</code>：展示为块级按钮</li>
+</ol>
+<p>通过不同的<code>class</code>组合，就可以形成多种按钮</p>
+<p><code>OOCSS</code>的优点如下：</p>
+<ol>
+<li>减少 css 代码</li>
+<li>html 标记简洁，逻辑性强</li>
+<li>语义标记，有利于 SEO</li>
+<li>由于各种 class 可重用，页面加载更快</li>
+<li>拓展性强，不用担心加入的新组件会破坏原有的组件</li>
+<li>有利于维护</li>
+</ol>
+<p>同时<code>OOCSS</code>使用时需要注意如下几点：</p>
+<ol>
+<li><code>OOCSS</code>主要用于大型网站开发，组件复用情况多</li>
+<li><code>OOCSS</code>在整体规划上难度颇高，需要有一定的经验的积累，如果使用不当，将会毫无复用性可言，维护也将异常艰难</li>
+<li>每个组件都需要一个完善的文档</li>
+</ol>
+<h2 id="SMACSS"><a href="#SMACSS" class="headerlink" title="SMACSS"></a>SMACSS</h2><p>了解不多，其通则为：</p>
+<ol>
+<li>结构分类：Base、Layout、Moudule、State、Theme</li>
+<li>命名规则：id 与 class 受限制的使用，名称之间使用分隔线</li>
+</ol>
+<h2 id="BEM"><a href="#BEM" class="headerlink" title="BEM"></a>BEM</h2><p><code>BEM</code>全称<code>Block Element Modifier</code>，<code>BEM</code>吸收了<code>OOCSS</code>的优点，并将 class 分块语义化，在可读性和维护性上个人认为高于<code>OOCSS</code></p>
+<p><code>BEM</code>是目前我在实际开发中使用体验最好的一个规范，由于<code>BEM</code>只是一个规范，有些部分并没有做强制要求，实际使用时我会根据自身经验和项目情况做一些调整，以当前项目使用情况为例：</p>
+<p>styles 文件夹的文件可分为四块</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">index.less</span><br><span class="line">lib - lay.less</span><br><span class="line">mod - modal.less</span><br><span class="line">pag - home.less</span><br></pre></td></tr></table></figure>
+
+<p><code>lib</code>开头的是一些基础的样式或者颜色字体等变量，通用布局和样式重置等，<code>mod</code>是各个组件样式，<code>pag</code>是页面内特殊样式</p>
+<p>以 modal 为例：</p>
+<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="selector-class">.m-modal</span> &#123;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.m-modal__header</span> &#123;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.m-modal__body</span> &#123;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.m-modal__body--nofooter</span> &#123;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.m-modal__footer</span> &#123;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><code>m-modal</code>是<code>Block</code>，<code>header</code>、<code>body</code>、<code>footer</code>是<code>Element</code>，<code>nofooter</code>为<code>Modifier</code>，B 与 M 之间使用<code>__</code>分隔，E 与 M 之间使用<code>--</code>分隔，class 在命名时，最多三段，相比其他规范在保持简短的同时提供了 class 的可读性。</p>
+<p>每个模块之间都是独立的，以组件进行开发，这点与<code>OOCSS</code>很像，<code>BEM</code>可复用性好。另外<code>BEM</code>是功能为导向的，每个模块代表着某个功能，不会出现<code>OOCSS</code>或者<code>SMASS</code>中像<code>.pt-20</code>(<code>padding-top:20px</code>)这种让别人看不懂的名称。</p>
+<p>有关 BEM 注意事项可见<a href="https://www.smashingmagazine.com/2016/06/battling-bem-extended-edition-common-problems-and-how-to-avoid-them/" target="_blank" rel="noopener">这里</a></p>
+<h2 id="CSS-Modules"><a href="#CSS-Modules" class="headerlink" title="CSS Modules"></a>CSS Modules</h2><p>在 react 和 vue 中使用过，其做法是给 class 后拼上一串 hash 值，以此保证样式名称不会冲突</p>
+<h2 id="CSS-in-JS"><a href="#CSS-in-JS" class="headerlink" title="CSS in JS"></a>CSS in JS</h2><p>代表为<a href="https://github.com/styled-components/styled-components" target="_blank" rel="noopener">styled-components</a>，即将样式写到组件内部。</p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p><code>OOCSS</code>和<code>BEM</code>的实施离不开 ui 设计，在开发之前，ui 需要有自己的一套组件库（图片），开发应当在开发具体页面之前首先在代码层面实现 ui 的零散组件，后续开发除非临时需求或者特殊样式，使用这套 ui 库应当就能组合出所需要的页面。</p>
+<p>相对比较而言，最新的两种 css 都需要框架或者编译器的支撑，在普适性上不如前三者，但这两者不存在学习成本，上手比较容易。就目前使用体验来看，<code>BEM</code>具有高复用、高拓展、易维护、易阅读、无捆绑，但由于其需要一定的学习成本和实践摸索，想要用好有一定难度。</p>
+]]></content>
+      <categories>
+        <category>css</category>
+      </categories>
+      <tags>
+        <tag>css</tag>
+        <tag>BEM</tag>
       </tags>
   </entry>
   <entry>
@@ -403,6 +403,34 @@
       </tags>
   </entry>
   <entry>
+    <title>linux入门笔记</title>
+    <url>/2019/05/06/linux%E5%85%A5%E9%97%A8/</url>
+    <content><![CDATA[<p>最近由于购买了一个 linux 服务器，操作是在有些蹩脚，便在 <a href="https://www.imooc.com/learn/175" target="_blank" rel="noopener">慕课</a> 上简单学了点入门知识，以便在使用服务器是不至于太难受。</p>
+<h3 id="一些常用指令"><a href="#一些常用指令" class="headerlink" title="一些常用指令"></a>一些常用指令</h3><p>文件操作指令</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">cd -                   // 进入上次操作目录</span><br><span class="line">cp                     // 复制文件</span><br><span class="line">cp -r                  // 复制文件夹</span><br><span class="line">ln -s                  // 创建软连接，源文件写绝对路径</span><br><span class="line">whereis(which)         // 搜索指令所在目录</span><br><span class="line">find /home -name "?s"  // 模糊查询</span><br><span class="line">grep                   // 搜索文件内容</span><br></pre></td></tr></table></figure>
+
+<p>其他指令</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">man                 // 查看指令帮助文档</span><br><span class="line">cat /etc/shells     // 查看系统支持的shell版本，如有/usr/bin/tmux，可通过tmux进入，exit退出</span><br><span class="line">alias &lt;指令&gt; = ''   // 给指令指定别名，写入~/.bashrc环境变量永久保存</span><br><span class="line">history             // 查看历史记录，使用 !字符串 重复执行最后一条以该字符串开头的命令</span><br></pre></td></tr></table></figure>
+
+<h3 id="输出重定向"><a href="#输出重定向" class="headerlink" title="输出重定向"></a>输出重定向</h3><ol>
+<li><code>&gt;</code>，以覆盖的方式，输出重定向，将正确命令输出保存到指定文件，<code>2&gt;</code>记录错误，<code>&amp;&gt;</code> 正确错误都记录</li>
+<li><code>&gt;&gt;</code>， 以追加的方式，将正确输出写入指定文件或设备,<code>2&gt;&gt;</code>记录错误，<code>&amp;&gt;&gt;</code> 正确错误都记录</li>
+<li><code>|</code>， <code>命令1 | 命令2</code> 管道符，命令 1 的操作结果作为命令 2 的操作对象</li>
+</ol>
+<h3 id="多命令顺序执行"><a href="#多命令顺序执行" class="headerlink" title="多命令顺序执行"></a>多命令顺序执行</h3><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">;   // 命令1 ; 命令2</span><br><span class="line">&amp;&amp;  // 命令1 &amp;&amp; 命令2 逻辑与</span><br><span class="line">||  // 命令1 || 命令2 逻辑或</span><br></pre></td></tr></table></figure>
+
+<h3 id="通配符"><a href="#通配符" class="headerlink" title="通配符"></a>通配符</h3><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">?      // 匹配一个任意字符</span><br><span class="line">*      // 匹配任意</span><br><span class="line">[]     // 匹配括号任意一个字符</span><br><span class="line">[-]    // 匹配范围内任一字符</span><br><span class="line">[^]    // 匹配不是中括号内的一个字符</span><br></pre></td></tr></table></figure>
+
+<h3 id="快捷键"><a href="#快捷键" class="headerlink" title="快捷键"></a>快捷键</h3><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">双击tab // 显示补全选项</span><br><span class="line">ctrl+a // 光标移到到命令行行首</span><br><span class="line">ctrl+e // 光标移动到命令行行尾</span><br><span class="line">ctrl+u // 从光标所在位置删除到行首</span><br><span class="line">ctrl+r // 从历史命令中搜索</span><br><span class="line">ctrl+z // 将当前进程暂停，jobs查看后台指令，bg %N将第N个任务在后台运行， fg %N取出第N个指令，bg，fg默认对最后一个进程进行操作</span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>linux</category>
+      </categories>
+      <tags>
+        <tag>linux</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>kview</title>
     <url>/2020/11/05/kview/</url>
     <content><![CDATA[<p>今年年中接手了一个全新的项目，定位是半解决方案半sdk，之所以加个半是因为，我们需要对外提供一个开箱即用的应用，但同时第三方也可以屏蔽掉我们ui，通过我们暴露的接口实现一套和我们不同风格但功能一样的应用。</p>
@@ -432,31 +460,22 @@
       </tags>
   </entry>
   <entry>
-    <title>linux入门笔记</title>
-    <url>/2019/05/06/linux%E5%85%A5%E9%97%A8/</url>
-    <content><![CDATA[<p>最近由于购买了一个 linux 服务器，操作是在有些蹩脚，便在 <a href="https://www.imooc.com/learn/175" target="_blank" rel="noopener">慕课</a> 上简单学了点入门知识，以便在使用服务器是不至于太难受。</p>
-<h3 id="一些常用指令"><a href="#一些常用指令" class="headerlink" title="一些常用指令"></a>一些常用指令</h3><p>文件操作指令</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">cd -                   // 进入上次操作目录</span><br><span class="line">cp                     // 复制文件</span><br><span class="line">cp -r                  // 复制文件夹</span><br><span class="line">ln -s                  // 创建软连接，源文件写绝对路径</span><br><span class="line">whereis(which)         // 搜索指令所在目录</span><br><span class="line">find /home -name "?s"  // 模糊查询</span><br><span class="line">grep                   // 搜索文件内容</span><br></pre></td></tr></table></figure>
-
-<p>其他指令</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">man                 // 查看指令帮助文档</span><br><span class="line">cat /etc/shells     // 查看系统支持的shell版本，如有/usr/bin/tmux，可通过tmux进入，exit退出</span><br><span class="line">alias &lt;指令&gt; = ''   // 给指令指定别名，写入~/.bashrc环境变量永久保存</span><br><span class="line">history             // 查看历史记录，使用 !字符串 重复执行最后一条以该字符串开头的命令</span><br></pre></td></tr></table></figure>
-
-<h3 id="输出重定向"><a href="#输出重定向" class="headerlink" title="输出重定向"></a>输出重定向</h3><ol>
-<li><code>&gt;</code>，以覆盖的方式，输出重定向，将正确命令输出保存到指定文件，<code>2&gt;</code>记录错误，<code>&amp;&gt;</code> 正确错误都记录</li>
-<li><code>&gt;&gt;</code>， 以追加的方式，将正确输出写入指定文件或设备,<code>2&gt;&gt;</code>记录错误，<code>&amp;&gt;&gt;</code> 正确错误都记录</li>
-<li><code>|</code>， <code>命令1 | 命令2</code> 管道符，命令 1 的操作结果作为命令 2 的操作对象</li>
+    <title>关于设置localStorage过期时间</title>
+    <url>/2019/03/22/localStorage/</url>
+    <content><![CDATA[<p>今天有被问到如何实现给 localStorage 添加过期时间。经过慢慢思考，我想到的方法下可以归结为以下几种：</p>
+<ol>
+<li>将时间拼接到值之后。比如<code>set(&quot;username&quot;,&quot;1553264048068;&quot;,1553264048068)</code>，实际存的值为<code>localStorage.setItem(&quot;username&quot;,&quot;1553264048068;;1553264048068&quot;)</code>。取值的策略时反向寻找到第一个分割符<code>;</code>,并将将其截取。</li>
+<li>使用对象进行二次组合。比如<code>set(&quot;username&quot;,&quot;Marcus&quot;,1553264048068)</code>,实际存的值为<code>localStorage.setItem({&quot;value&quot;:&quot;Marcus&quot;,&quot;expire&quot;:1553264048068})</code>。取值的策略是<code>JSON.parse</code>后去取出值和时间。</li>
 </ol>
-<h3 id="多命令顺序执行"><a href="#多命令顺序执行" class="headerlink" title="多命令顺序执行"></a>多命令顺序执行</h3><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">;   // 命令1 ; 命令2</span><br><span class="line">&amp;&amp;  // 命令1 &amp;&amp; 命令2 逻辑与</span><br><span class="line">||  // 命令1 || 命令2 逻辑或</span><br></pre></td></tr></table></figure>
-
-<h3 id="通配符"><a href="#通配符" class="headerlink" title="通配符"></a>通配符</h3><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">?      // 匹配一个任意字符</span><br><span class="line">*      // 匹配任意</span><br><span class="line">[]     // 匹配括号任意一个字符</span><br><span class="line">[-]    // 匹配范围内任一字符</span><br><span class="line">[^]    // 匹配不是中括号内的一个字符</span><br></pre></td></tr></table></figure>
-
-<h3 id="快捷键"><a href="#快捷键" class="headerlink" title="快捷键"></a>快捷键</h3><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">双击tab // 显示补全选项</span><br><span class="line">ctrl+a // 光标移到到命令行行首</span><br><span class="line">ctrl+e // 光标移动到命令行行尾</span><br><span class="line">ctrl+u // 从光标所在位置删除到行首</span><br><span class="line">ctrl+r // 从历史命令中搜索</span><br><span class="line">ctrl+z // 将当前进程暂停，jobs查看后台指令，bg %N将第N个任务在后台运行， fg %N取出第N个指令，bg，fg默认对最后一个进程进行操作</span><br></pre></td></tr></table></figure>
+<p>两种方法的本质都一样，都是将值和时间进行了拼接，在我现在看来这两个方法有个最大的问题就是修改了原来的值，在解析的时候往往是 bug 产生的源泉，因为你很难去预期使用者会传入什么值。</p>
+<p>后来在阅读了<a href="https://github.com/marcuswestin/store.js" target="_blank" rel="noopener">store.js</a>后，恍然大悟，<code>namespace</code>，我无法预期用户值的类型，但我可以预期 name 的类型，在 name 上加上一个同为 string 类型的命名空间便可解决这个问题。<code>set(&quot;username&quot;,&quot;Marcus&quot;,1553264048068)</code>，实际存为<code>localStorage.setItem(&quot;username&quot;:&quot;Marcus&quot;)</code>和<code>localStorage.setItem(&quot;expire_username&quot;:&quot;1553264048068&quot;)</code>。</p>
 ]]></content>
       <categories>
-        <category>linux</category>
+        <category>javascript</category>
       </categories>
       <tags>
-        <tag>linux</tag>
+        <tag>javascript</tag>
+        <tag>localStorage</tag>
       </tags>
   </entry>
   <entry>
@@ -496,22 +515,34 @@
       </tags>
   </entry>
   <entry>
-    <title>关于设置localStorage过期时间</title>
-    <url>/2019/03/22/localStorage/</url>
-    <content><![CDATA[<p>今天有被问到如何实现给 localStorage 添加过期时间。经过慢慢思考，我想到的方法下可以归结为以下几种：</p>
-<ol>
-<li>将时间拼接到值之后。比如<code>set(&quot;username&quot;,&quot;1553264048068;&quot;,1553264048068)</code>，实际存的值为<code>localStorage.setItem(&quot;username&quot;,&quot;1553264048068;;1553264048068&quot;)</code>。取值的策略时反向寻找到第一个分割符<code>;</code>,并将将其截取。</li>
-<li>使用对象进行二次组合。比如<code>set(&quot;username&quot;,&quot;Marcus&quot;,1553264048068)</code>,实际存的值为<code>localStorage.setItem({&quot;value&quot;:&quot;Marcus&quot;,&quot;expire&quot;:1553264048068})</code>。取值的策略是<code>JSON.parse</code>后去取出值和时间。</li>
-</ol>
-<p>两种方法的本质都一样，都是将值和时间进行了拼接，在我现在看来这两个方法有个最大的问题就是修改了原来的值，在解析的时候往往是 bug 产生的源泉，因为你很难去预期使用者会传入什么值。</p>
-<p>后来在阅读了<a href="https://github.com/marcuswestin/store.js" target="_blank" rel="noopener">store.js</a>后，恍然大悟，<code>namespace</code>，我无法预期用户值的类型，但我可以预期 name 的类型，在 name 上加上一个同为 string 类型的命名空间便可解决这个问题。<code>set(&quot;username&quot;,&quot;Marcus&quot;,1553264048068)</code>，实际存为<code>localStorage.setItem(&quot;username&quot;:&quot;Marcus&quot;)</code>和<code>localStorage.setItem(&quot;expire_username&quot;:&quot;1553264048068&quot;)</code>。</p>
+    <title>react工作的一些总结</title>
+    <url>/2019/04/22/react%E5%BC%80%E5%8F%91%E6%80%BB%E7%BB%9301/</url>
+    <content><![CDATA[<h2 id="Modal"><a href="#Modal" class="headerlink" title="Modal"></a>Modal</h2><p>根据<a href="https://react.docschina.org/docs/portals.html" target="_blank" rel="noopener">文档描述</a>，portals 可以将子节点渲染到父节点之外的 DOM 当中，这在子组件需要“跳出”容器时非常有用，例如模态框。</p>
+<p>其实现核心代码简单如下：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">import React from &#39;react&#39;;</span><br><span class="line">import ReactDOM from &#39;react-dom&#39;;</span><br><span class="line">import &#123; Modal as ModalContainer, Props as ModalProps &#125; from &#39;.&#x2F;Modal&#39;;</span><br><span class="line"></span><br><span class="line">interface Props extends ModalProps &#123;&#125;</span><br><span class="line"></span><br><span class="line">interface State &#123;&#125;</span><br><span class="line"></span><br><span class="line">class Modal extends React.Component&lt;Props, State&gt; &#123;</span><br><span class="line">  constructor(props: Props) &#123;</span><br><span class="line">    super(props);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  private el &#x3D; document.createElement(&#39;div&#39;);</span><br><span class="line"></span><br><span class="line">  componentDidMount() &#123;</span><br><span class="line">    document.body.appendChild(this.el);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  render() &#123;</span><br><span class="line">    return ReactDOM.createPortal(&lt;ModalContainer &#123;...this.props&#125; &#x2F;&gt;, this.el);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">export &#123; Modal &#125;;</span><br></pre></td></tr></table></figure>
+
+<h2 id="将-src-加入引入路径"><a href="#将-src-加入引入路径" class="headerlink" title="将 src 加入引入路径"></a>将 src 加入引入路径</h2><p>当文件嵌套过深时，可能会存在这样的路径引入-<code>../../../</code>，这种相对路径的引入方式可能会对代码阅读造成困扰，一时间不知道文件具体路径在哪(如果编辑器没有<code>ctrl+左键</code>自动寻址的话)，另外可能有些人也会觉得不太美观，因此可采取的将<code>src</code>将入 node 的引入路径下，具体配置如下：</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> path = <span class="built_in">require</span>(<span class="string">'path'</span>);</span><br><span class="line"><span class="keyword">const</span> &#123; override &#125; = <span class="built_in">require</span>(<span class="string">'customize-cra'</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> overrideProcessEnv = <span class="function"><span class="params">()</span> =&gt;</span> <span class="function"><span class="params">config</span> =&gt;</span> &#123;</span><br><span class="line">  config.resolve.modules = [path.join(__dirname, <span class="string">'src'</span>)].concat(</span><br><span class="line">    config.resolve.modules</span><br><span class="line">  );</span><br><span class="line">  <span class="keyword">return</span> config;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="built_in">module</span>.exports = override(overrideProcessEnv());</span><br></pre></td></tr></table></figure>
+
+<h2 id="autocompelete"><a href="#autocompelete" class="headerlink" title="autocompelete"></a>autocompelete</h2><p>在开发 react 表单的时候经常会遇到一个很麻烦的事情，那就是在我不需要的地方，浏览器也给我自动填充了用户名和密码，并且设置<code>autoComplete=&quot;off&quot;</code>无效。</p>
+<p>可采用如下方式进行最简单的处理：</p>
+<figure class="highlight jsx"><table><tr><td class="code"><pre><span class="line">&lt;Input autoComplete=<span class="string">"new-password"</span> type=<span class="string">"password"</span> placeholder=<span class="string">"Password"</span> /&gt;</span><br></pre></td></tr></table></figure>
+
+<h2 id="路由用法"><a href="#路由用法" class="headerlink" title="路由用法"></a>路由用法</h2><p>match 即为上级路由，在使用此路由时传入，此种路由不同于 hash 路由，不存在<code>#</code>。</p>
+<figure class="highlight jsx"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> App = <span class="function">(<span class="params">&#123; match &#125;</span>) =&gt;</span> (</span><br><span class="line">  &lt;div&gt;</span><br><span class="line">    &lt;Switch&gt;</span><br><span class="line">      &lt;Route</span><br><span class="line">        path=&#123;<span class="string">`<span class="subst">$&#123;match.url&#125;</span>ChatRoom`</span>&#125;</span><br><span class="line">        component=&#123;asyncComponent(<span class="function"><span class="params">()</span> =&gt;</span> <span class="keyword">import</span>(<span class="string">'./Chat'</span>))&#125;</span><br><span class="line">      /&gt;</span><br><span class="line">      &lt;Route</span><br><span class="line">        path=&#123;match.url&#125;</span><br><span class="line">        render=&#123;props =&gt; (</span><br><span class="line">          &lt;Redirect</span><br><span class="line">            to=&#123;&#123;</span><br><span class="line">              pathname: <span class="string">'/ChatRoom'</span>,</span><br><span class="line">              state: &#123; <span class="attr">from</span>: props.location &#125;</span><br><span class="line">            &#125;&#125;</span><br><span class="line">          /&gt;</span><br><span class="line">        )&#125;</span><br><span class="line">      /&gt;</span><br><span class="line">    &lt;<span class="regexp">/Switch&gt;</span></span><br><span class="line"><span class="regexp">  &lt;/</span>div&gt;</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
+
+<h2 id="动态加载路由组件"><a href="#动态加载路由组件" class="headerlink" title="动态加载路由组件"></a>动态加载路由组件</h2><p>在上面路由用法中使用的<code>asyncComponent</code>为动态的加载组件，避免首页加载时间过长，可用此种方式进行异步加载。</p>
+<p>实现代码如下：</p>
+<figure class="highlight jsx"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> React, &#123; Component &#125; <span class="keyword">from</span> <span class="string">'react'</span>;</span><br><span class="line"><span class="keyword">import</span> Nprogress <span class="keyword">from</span> <span class="string">'nprogress'</span>;</span><br><span class="line"><span class="keyword">import</span> ReactPlaceholder <span class="keyword">from</span> <span class="string">'react-placeholder'</span>;</span><br><span class="line"><span class="keyword">import</span> <span class="string">'nprogress/nprogress.css'</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> <span class="string">'react-placeholder/lib/reactPlaceholder.css'</span>;</span><br><span class="line"><span class="keyword">import</span> CircularProgress <span class="keyword">from</span> <span class="string">'components/CircularProgress'</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="function"><span class="keyword">function</span> <span class="title">asyncComponent</span>(<span class="params">importComponent</span>) </span>&#123;</span><br><span class="line">  <span class="class"><span class="keyword">class</span> <span class="title">AsyncFunc</span> <span class="keyword">extends</span> <span class="title">Component</span> </span>&#123;</span><br><span class="line">    <span class="keyword">constructor</span>(props) &#123;</span><br><span class="line">      <span class="keyword">super</span>(props);</span><br><span class="line">      <span class="keyword">this</span>.state = &#123;</span><br><span class="line">        component: <span class="literal">null</span></span><br><span class="line">      &#125;;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    componentWillMount() &#123;</span><br><span class="line">      Nprogress.start();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    componentWillUnmount() &#123;</span><br><span class="line">      <span class="keyword">this</span>.mounted = <span class="literal">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">async</span> componentDidMount() &#123;</span><br><span class="line">      <span class="keyword">this</span>.mounted = <span class="literal">true</span>;</span><br><span class="line">      <span class="keyword">const</span> &#123; <span class="attr">default</span>: Component &#125; = <span class="keyword">await</span> importComponent();</span><br><span class="line">      Nprogress.done();</span><br><span class="line">      <span class="keyword">if</span> (<span class="keyword">this</span>.mounted) &#123;</span><br><span class="line">        <span class="keyword">this</span>.setState(&#123;</span><br><span class="line">          component: <span class="xml"><span class="tag">&lt;<span class="name">Component</span> &#123;<span class="attr">...this.props</span>&#125; /&gt;</span></span></span><br><span class="line">        &#125;);</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    render() &#123;</span><br><span class="line">      <span class="keyword">const</span> Component = <span class="keyword">this</span>.state.component || <span class="xml"><span class="tag">&lt;<span class="name">CircularProgress</span> /&gt;</span></span>;</span><br><span class="line">      <span class="keyword">return</span> (</span><br><span class="line">        &lt;ReactPlaceholder type=<span class="string">"text"</span> rows=&#123;<span class="number">7</span>&#125; ready=&#123;Component !== <span class="literal">null</span>&#125;&gt;</span><br><span class="line">          &#123;Component&#125;</span><br><span class="line">        &lt;<span class="regexp">/ReactPlaceholder&gt;</span></span><br><span class="line"><span class="regexp">      );</span></span><br><span class="line"><span class="regexp">    &#125;</span></span><br><span class="line"><span class="regexp">  &#125;</span></span><br><span class="line"><span class="regexp"></span></span><br><span class="line"><span class="regexp">  return AsyncFunc;</span></span><br><span class="line"><span class="regexp">&#125;</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="登录认证"><a href="#登录认证" class="headerlink" title="登录认证"></a>登录认证</h2><p>react 中实现根据 token 进行登录认证，也就是简单的判断 token 是否存在，如果不存在则跳转登录页。</p>
+<figure class="highlight jsx"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 路由重定向</span></span><br><span class="line"><span class="keyword">const</span> RestrictedRoute = <span class="function">(<span class="params">&#123; component: Component, token, ...rest &#125;</span>) =&gt;</span> (</span><br><span class="line">  &lt;Route</span><br><span class="line">    &#123;...rest&#125;</span><br><span class="line">    render=&#123;props =&gt;</span><br><span class="line">      token ? (</span><br><span class="line">        &lt;Component &#123;...props&#125; /&gt;</span><br><span class="line">      ) : (</span><br><span class="line">        &lt;Redirect</span><br><span class="line">          to=&#123;&#123;</span><br><span class="line">            pathname: <span class="string">'/signin'</span>,</span><br><span class="line">            state: &#123; <span class="attr">from</span>: props.location &#125;</span><br><span class="line">          &#125;&#125;</span><br><span class="line">        /&gt;</span><br><span class="line">      )</span><br><span class="line">    &#125;</span><br><span class="line">  /&gt;</span><br><span class="line">);</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">App</span> <span class="keyword">extends</span> <span class="title">Component</span> </span>&#123;</span><br><span class="line">  render() &#123;</span><br><span class="line">    <span class="keyword">const</span> &#123; match, token &#125; = <span class="keyword">this</span>.props;</span><br><span class="line">    <span class="keyword">return</span> (</span><br><span class="line">      &lt;LocaleProvider locale=&#123;antdCN&#125;&gt;</span><br><span class="line">        &lt;Switch&gt;</span><br><span class="line">          &lt;Route exact path=<span class="string">"/signin"</span> component=&#123;() =&gt; <span class="xml"><span class="tag">&lt;<span class="name">div</span>&gt;</span>登录<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span>&#125; /&gt;</span><br><span class="line">          &lt;RestrictedRoute</span><br><span class="line">            path=&#123;<span class="string">`<span class="subst">$&#123;match.url&#125;</span>`</span>&#125;</span><br><span class="line">            token=&#123;token&#125;</span><br><span class="line">            component=&#123;() =&gt; <span class="xml"><span class="tag">&lt;<span class="name">div</span>&gt;</span>sd<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span>&#125;</span><br><span class="line">          /&gt;</span><br><span class="line">        &lt;<span class="regexp">/Switch&gt;</span></span><br><span class="line"><span class="regexp">      &lt;/</span>LocaleProvider&gt;</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 ]]></content>
       <categories>
-        <category>javascript</category>
+        <category>react</category>
       </categories>
       <tags>
-        <tag>javascript</tag>
-        <tag>localStorage</tag>
+        <tag>react</tag>
       </tags>
   </entry>
   <entry>
@@ -587,60 +618,6 @@
       <tags>
         <tag>react</tag>
         <tag>redux</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>react工作的一些总结</title>
-    <url>/2019/04/22/react%E5%BC%80%E5%8F%91%E6%80%BB%E7%BB%9301/</url>
-    <content><![CDATA[<h2 id="Modal"><a href="#Modal" class="headerlink" title="Modal"></a>Modal</h2><p>根据<a href="https://react.docschina.org/docs/portals.html" target="_blank" rel="noopener">文档描述</a>，portals 可以将子节点渲染到父节点之外的 DOM 当中，这在子组件需要“跳出”容器时非常有用，例如模态框。</p>
-<p>其实现核心代码简单如下：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">import React from &#39;react&#39;;</span><br><span class="line">import ReactDOM from &#39;react-dom&#39;;</span><br><span class="line">import &#123; Modal as ModalContainer, Props as ModalProps &#125; from &#39;.&#x2F;Modal&#39;;</span><br><span class="line"></span><br><span class="line">interface Props extends ModalProps &#123;&#125;</span><br><span class="line"></span><br><span class="line">interface State &#123;&#125;</span><br><span class="line"></span><br><span class="line">class Modal extends React.Component&lt;Props, State&gt; &#123;</span><br><span class="line">  constructor(props: Props) &#123;</span><br><span class="line">    super(props);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  private el &#x3D; document.createElement(&#39;div&#39;);</span><br><span class="line"></span><br><span class="line">  componentDidMount() &#123;</span><br><span class="line">    document.body.appendChild(this.el);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  render() &#123;</span><br><span class="line">    return ReactDOM.createPortal(&lt;ModalContainer &#123;...this.props&#125; &#x2F;&gt;, this.el);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">export &#123; Modal &#125;;</span><br></pre></td></tr></table></figure>
-
-<h2 id="将-src-加入引入路径"><a href="#将-src-加入引入路径" class="headerlink" title="将 src 加入引入路径"></a>将 src 加入引入路径</h2><p>当文件嵌套过深时，可能会存在这样的路径引入-<code>../../../</code>，这种相对路径的引入方式可能会对代码阅读造成困扰，一时间不知道文件具体路径在哪(如果编辑器没有<code>ctrl+左键</code>自动寻址的话)，另外可能有些人也会觉得不太美观，因此可采取的将<code>src</code>将入 node 的引入路径下，具体配置如下：</p>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> path = <span class="built_in">require</span>(<span class="string">'path'</span>);</span><br><span class="line"><span class="keyword">const</span> &#123; override &#125; = <span class="built_in">require</span>(<span class="string">'customize-cra'</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> overrideProcessEnv = <span class="function"><span class="params">()</span> =&gt;</span> <span class="function"><span class="params">config</span> =&gt;</span> &#123;</span><br><span class="line">  config.resolve.modules = [path.join(__dirname, <span class="string">'src'</span>)].concat(</span><br><span class="line">    config.resolve.modules</span><br><span class="line">  );</span><br><span class="line">  <span class="keyword">return</span> config;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="built_in">module</span>.exports = override(overrideProcessEnv());</span><br></pre></td></tr></table></figure>
-
-<h2 id="autocompelete"><a href="#autocompelete" class="headerlink" title="autocompelete"></a>autocompelete</h2><p>在开发 react 表单的时候经常会遇到一个很麻烦的事情，那就是在我不需要的地方，浏览器也给我自动填充了用户名和密码，并且设置<code>autoComplete=&quot;off&quot;</code>无效。</p>
-<p>可采用如下方式进行最简单的处理：</p>
-<figure class="highlight jsx"><table><tr><td class="code"><pre><span class="line">&lt;Input autoComplete=<span class="string">"new-password"</span> type=<span class="string">"password"</span> placeholder=<span class="string">"Password"</span> /&gt;</span><br></pre></td></tr></table></figure>
-
-<h2 id="路由用法"><a href="#路由用法" class="headerlink" title="路由用法"></a>路由用法</h2><p>match 即为上级路由，在使用此路由时传入，此种路由不同于 hash 路由，不存在<code>#</code>。</p>
-<figure class="highlight jsx"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> App = <span class="function">(<span class="params">&#123; match &#125;</span>) =&gt;</span> (</span><br><span class="line">  &lt;div&gt;</span><br><span class="line">    &lt;Switch&gt;</span><br><span class="line">      &lt;Route</span><br><span class="line">        path=&#123;<span class="string">`<span class="subst">$&#123;match.url&#125;</span>ChatRoom`</span>&#125;</span><br><span class="line">        component=&#123;asyncComponent(<span class="function"><span class="params">()</span> =&gt;</span> <span class="keyword">import</span>(<span class="string">'./Chat'</span>))&#125;</span><br><span class="line">      /&gt;</span><br><span class="line">      &lt;Route</span><br><span class="line">        path=&#123;match.url&#125;</span><br><span class="line">        render=&#123;props =&gt; (</span><br><span class="line">          &lt;Redirect</span><br><span class="line">            to=&#123;&#123;</span><br><span class="line">              pathname: <span class="string">'/ChatRoom'</span>,</span><br><span class="line">              state: &#123; <span class="attr">from</span>: props.location &#125;</span><br><span class="line">            &#125;&#125;</span><br><span class="line">          /&gt;</span><br><span class="line">        )&#125;</span><br><span class="line">      /&gt;</span><br><span class="line">    &lt;<span class="regexp">/Switch&gt;</span></span><br><span class="line"><span class="regexp">  &lt;/</span>div&gt;</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
-
-<h2 id="动态加载路由组件"><a href="#动态加载路由组件" class="headerlink" title="动态加载路由组件"></a>动态加载路由组件</h2><p>在上面路由用法中使用的<code>asyncComponent</code>为动态的加载组件，避免首页加载时间过长，可用此种方式进行异步加载。</p>
-<p>实现代码如下：</p>
-<figure class="highlight jsx"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> React, &#123; Component &#125; <span class="keyword">from</span> <span class="string">'react'</span>;</span><br><span class="line"><span class="keyword">import</span> Nprogress <span class="keyword">from</span> <span class="string">'nprogress'</span>;</span><br><span class="line"><span class="keyword">import</span> ReactPlaceholder <span class="keyword">from</span> <span class="string">'react-placeholder'</span>;</span><br><span class="line"><span class="keyword">import</span> <span class="string">'nprogress/nprogress.css'</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> <span class="string">'react-placeholder/lib/reactPlaceholder.css'</span>;</span><br><span class="line"><span class="keyword">import</span> CircularProgress <span class="keyword">from</span> <span class="string">'components/CircularProgress'</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="function"><span class="keyword">function</span> <span class="title">asyncComponent</span>(<span class="params">importComponent</span>) </span>&#123;</span><br><span class="line">  <span class="class"><span class="keyword">class</span> <span class="title">AsyncFunc</span> <span class="keyword">extends</span> <span class="title">Component</span> </span>&#123;</span><br><span class="line">    <span class="keyword">constructor</span>(props) &#123;</span><br><span class="line">      <span class="keyword">super</span>(props);</span><br><span class="line">      <span class="keyword">this</span>.state = &#123;</span><br><span class="line">        component: <span class="literal">null</span></span><br><span class="line">      &#125;;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    componentWillMount() &#123;</span><br><span class="line">      Nprogress.start();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    componentWillUnmount() &#123;</span><br><span class="line">      <span class="keyword">this</span>.mounted = <span class="literal">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">async</span> componentDidMount() &#123;</span><br><span class="line">      <span class="keyword">this</span>.mounted = <span class="literal">true</span>;</span><br><span class="line">      <span class="keyword">const</span> &#123; <span class="attr">default</span>: Component &#125; = <span class="keyword">await</span> importComponent();</span><br><span class="line">      Nprogress.done();</span><br><span class="line">      <span class="keyword">if</span> (<span class="keyword">this</span>.mounted) &#123;</span><br><span class="line">        <span class="keyword">this</span>.setState(&#123;</span><br><span class="line">          component: <span class="xml"><span class="tag">&lt;<span class="name">Component</span> &#123;<span class="attr">...this.props</span>&#125; /&gt;</span></span></span><br><span class="line">        &#125;);</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    render() &#123;</span><br><span class="line">      <span class="keyword">const</span> Component = <span class="keyword">this</span>.state.component || <span class="xml"><span class="tag">&lt;<span class="name">CircularProgress</span> /&gt;</span></span>;</span><br><span class="line">      <span class="keyword">return</span> (</span><br><span class="line">        &lt;ReactPlaceholder type=<span class="string">"text"</span> rows=&#123;<span class="number">7</span>&#125; ready=&#123;Component !== <span class="literal">null</span>&#125;&gt;</span><br><span class="line">          &#123;Component&#125;</span><br><span class="line">        &lt;<span class="regexp">/ReactPlaceholder&gt;</span></span><br><span class="line"><span class="regexp">      );</span></span><br><span class="line"><span class="regexp">    &#125;</span></span><br><span class="line"><span class="regexp">  &#125;</span></span><br><span class="line"><span class="regexp"></span></span><br><span class="line"><span class="regexp">  return AsyncFunc;</span></span><br><span class="line"><span class="regexp">&#125;</span></span><br></pre></td></tr></table></figure>
-
-<h2 id="登录认证"><a href="#登录认证" class="headerlink" title="登录认证"></a>登录认证</h2><p>react 中实现根据 token 进行登录认证，也就是简单的判断 token 是否存在，如果不存在则跳转登录页。</p>
-<figure class="highlight jsx"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 路由重定向</span></span><br><span class="line"><span class="keyword">const</span> RestrictedRoute = <span class="function">(<span class="params">&#123; component: Component, token, ...rest &#125;</span>) =&gt;</span> (</span><br><span class="line">  &lt;Route</span><br><span class="line">    &#123;...rest&#125;</span><br><span class="line">    render=&#123;props =&gt;</span><br><span class="line">      token ? (</span><br><span class="line">        &lt;Component &#123;...props&#125; /&gt;</span><br><span class="line">      ) : (</span><br><span class="line">        &lt;Redirect</span><br><span class="line">          to=&#123;&#123;</span><br><span class="line">            pathname: <span class="string">'/signin'</span>,</span><br><span class="line">            state: &#123; <span class="attr">from</span>: props.location &#125;</span><br><span class="line">          &#125;&#125;</span><br><span class="line">        /&gt;</span><br><span class="line">      )</span><br><span class="line">    &#125;</span><br><span class="line">  /&gt;</span><br><span class="line">);</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">App</span> <span class="keyword">extends</span> <span class="title">Component</span> </span>&#123;</span><br><span class="line">  render() &#123;</span><br><span class="line">    <span class="keyword">const</span> &#123; match, token &#125; = <span class="keyword">this</span>.props;</span><br><span class="line">    <span class="keyword">return</span> (</span><br><span class="line">      &lt;LocaleProvider locale=&#123;antdCN&#125;&gt;</span><br><span class="line">        &lt;Switch&gt;</span><br><span class="line">          &lt;Route exact path=<span class="string">"/signin"</span> component=&#123;() =&gt; <span class="xml"><span class="tag">&lt;<span class="name">div</span>&gt;</span>登录<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span>&#125; /&gt;</span><br><span class="line">          &lt;RestrictedRoute</span><br><span class="line">            path=&#123;<span class="string">`<span class="subst">$&#123;match.url&#125;</span>`</span>&#125;</span><br><span class="line">            token=&#123;token&#125;</span><br><span class="line">            component=&#123;() =&gt; <span class="xml"><span class="tag">&lt;<span class="name">div</span>&gt;</span>sd<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span>&#125;</span><br><span class="line">          /&gt;</span><br><span class="line">        &lt;<span class="regexp">/Switch&gt;</span></span><br><span class="line"><span class="regexp">      &lt;/</span>LocaleProvider&gt;</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-]]></content>
-      <categories>
-        <category>react</category>
-      </categories>
-      <tags>
-        <tag>react</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>react脚手架</title>
-    <url>/2019/04/12/react%E8%84%9A%E6%89%8B%E6%9E%B6/</url>
-    <content><![CDATA[<p>最近有机会研究了一下<code>wieldy-react</code>，也算是颇有收获，结合之前创建脚手架的经验，个人依据<code>wieldy-react</code>尝试创建了一个<code>react</code>工程。</p>
-<p>工程目录如下：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">src                               &#x2F;&#x2F; 源码根目录</span><br><span class="line">|   index.js                      &#x2F;&#x2F; 主入口</span><br><span class="line">|   NextApp.js                    &#x2F;&#x2F; 次入口</span><br><span class="line">|   serviceWorker.js</span><br><span class="line">|</span><br><span class="line">+---apis</span><br><span class="line">|       api.js                     &#x2F;&#x2F; 接口</span><br><span class="line">|</span><br><span class="line">+---appRedux                       &#x2F;&#x2F; 状态管理</span><br><span class="line">|   +---actions</span><br><span class="line">|   |       Auth.js</span><br><span class="line">|   |       Chat.js</span><br><span class="line">|   |       index.js</span><br><span class="line">|   |</span><br><span class="line">|   +---reducers</span><br><span class="line">|   |       Auth.js</span><br><span class="line">|   |       Chat.js</span><br><span class="line">|   |       index.js</span><br><span class="line">|   |</span><br><span class="line">|   +---sagas</span><br><span class="line">|   |       Auth.js</span><br><span class="line">|   |       Chat.js</span><br><span class="line">|   |       index.js</span><br><span class="line">|   |</span><br><span class="line">|   \---store                      &#x2F;&#x2F; store</span><br><span class="line">|           index.js</span><br><span class="line">|</span><br><span class="line">+---assets                         &#x2F;&#x2F; 资源文件夹</span><br><span class="line">|   \---images                     &#x2F;&#x2F; 图片资源</span><br><span class="line">+---components                     &#x2F;&#x2F; 无状态组件文件夹</span><br><span class="line">|   \---CircularProgress</span><br><span class="line">|           index.js</span><br><span class="line">|</span><br><span class="line">+---constants                      &#x2F;&#x2F; 常量配置</span><br><span class="line">|       ActionTypes.js</span><br><span class="line">|       DomainSetting.js</span><br><span class="line">|</span><br><span class="line">+---containers                     &#x2F;&#x2F; 有状态组件文件夹</span><br><span class="line">|   |   SignIn.js</span><br><span class="line">|   |   Socket.js</span><br><span class="line">|   |</span><br><span class="line">|   +---App</span><br><span class="line">|   |       index.js</span><br><span class="line">|   |       MainApp.js</span><br><span class="line">|   |</span><br><span class="line">|   +---Chat</span><br><span class="line">|   |       FriendList.js</span><br><span class="line">|   |       index.js</span><br><span class="line">|   |</span><br><span class="line">|   \---Sidebar</span><br><span class="line">|           index.js</span><br><span class="line">|</span><br><span class="line">+---helper                        &#x2F;&#x2F; 工具函数</span><br><span class="line">|       asyncComponent.js         &#x2F;&#x2F; 异步加载组件</span><br><span class="line">|</span><br><span class="line">+---routes                        &#x2F;&#x2F; 页面路由以及页面组件</span><br><span class="line">|   |   index.js</span><br><span class="line">|   |</span><br><span class="line">|   \---Chat</span><br><span class="line">|           index.js</span><br><span class="line">|</span><br><span class="line">\---style                         &#x2F;&#x2F; 样式</span><br><span class="line">    |   style.less</span><br><span class="line">    |</span><br><span class="line">    +---base                      &#x2F;&#x2F; 基础样式</span><br><span class="line">    |       base.less</span><br><span class="line">    |       index.less</span><br><span class="line">    |</span><br><span class="line">    +---global                    &#x2F;&#x2F; 全局样式</span><br><span class="line">    |       index.less</span><br><span class="line">    |       mixin.less</span><br><span class="line">    |       variables.less</span><br><span class="line">    |</span><br><span class="line">    \---layout                    &#x2F;&#x2F; 布局样式</span><br><span class="line">            ant-layout.less       &#x2F;&#x2F; antd样式修改</span><br><span class="line">            index.less</span><br></pre></td></tr></table></figure>
-
-<p>相比较我之前搭建的脚手架主要的不同点主要有如下几点：</p>
-<ul>
-<li>将路由集成到了 redux 之中</li>
-<li>组件拆分到了三个目录当中，分别为<code>components</code>，<code>containers</code>，<code>routes</code>，分别存放无状态组件，有状态容器和路由。</li>
-</ul>
-<h2 id="局部热更新"><a href="#局部热更新" class="headerlink" title="局部热更新"></a>局部热更新</h2><p>虽然<code>Create React App</code>已经实现了热更新，但每次修改之后都需要整个重新刷新页面，但很多时候我们只修改了局部的一小块，刷新整个页面会造成不必要的性能浪费，因此可以使用<code>react-hot-loader</code>来实现局部刷新。</p>
-<p>总体来说，这套开发模式比我之前的个人认为是一种进步，如果对具体细节感兴趣，<a href="https://github.com/1016482011/chat/tree/save/template" target="_blank" rel="noopener">请移步</a></p>
-]]></content>
-      <categories>
-        <category>react</category>
-      </categories>
-      <tags>
-        <tag>react</tag>
-        <tag>脚手架</tag>
       </tags>
   </entry>
   <entry>
@@ -809,6 +786,33 @@
       </tags>
   </entry>
   <entry>
+    <title>SVG文字外框自适应 &amp; 模板运算替换</title>
+    <url>/2020/09/09/%E6%A8%A1%E6%9D%BF%E8%BF%90%E7%AE%97%E6%9B%BF%E6%8D%A2/</url>
+    <content><![CDATA[<p>如果我们动态的修改svg内部文字的长度，很容易遇到文字超出外框的情况，这个时候我们就需要自动调节外框的长度。</p>
+<p>假设<code>svg</code>的外框路径代码如下，其中<code>{{x+*}}</code>中的x就是文字的长度，我们需要加上后面的数字，并把原先的模板替换掉。</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">&lt;path d=<span class="string">"M13.0780339,0.5 L0.574889123,22.2905543 L3.49834121,27.5 L&#123;&#123;x+31&#125;&#125;.7099611,27.5 L&#123;&#123;x+44&#125;&#125;.1969137,5.64739256 L&#123;&#123;x+41&#125;&#125;.4022785,0.5 L13.0780339,0.5 Z"</span>&gt;&lt;<span class="regexp">/path&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="方法一"><a href="#方法一" class="headerlink" title="方法一"></a>方法一</h3><p>最初我的想法是先用正则把 <code>{{x+31}}、{{x+44}}、{{x+41}}</code>全都匹配出来，然后再通过正则把里面的数字匹配出来，然后和<code>x</code>相加，把得到的最终值替换回去，核心代码如下：</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">let</span> svg = <span class="string">'&lt;path d="M13.0780339,0.5 L0.574889123,22.2905543 L3.49834121,27.5 L&#123;&#123;x+31&#125;&#125;.7099611,27.5 L&#123;&#123;x+44&#125;&#125;.1969137,5.64739256 L&#123;&#123;x+41&#125;&#125;.4022785,0.5 L13.0780339,0.5 Z"&gt;&lt;/path&gt;'</span></span><br><span class="line"></span><br><span class="line">svg.match(<span class="regexp">/&#123;&#123;x+.*?&#125;&#125;/g</span>) <span class="comment">// 匹配出模板</span></span><br><span class="line"></span><br><span class="line">string.match(<span class="regexp">/[0-9]+/</span>) <span class="comment">// 匹配出模板里的字符串</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="方法二"><a href="#方法二" class="headerlink" title="方法二"></a>方法二</h3><p>方法一虽然实现起来比较简单，但是看起来比较的low，而且限定只能处理数字，便有了方法二，核心代码如下：</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">parseTemplate</span>(<span class="params">template, x</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">let</span> origArr = template.match(<span class="regexp">/&#123;&#123;x+.*?&#125;&#125;/g</span>);</span><br><span class="line">  <span class="keyword">let</span> arr = <span class="built_in">JSON</span>.parse(<span class="built_in">JSON</span>.stringify(origArr));</span><br><span class="line"></span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; arr.length; i++) &#123;</span><br><span class="line">    arr[i] = arr[i].replace(<span class="regexp">/&#123;&#123;|&#125;&#125;/g</span>, <span class="string">""</span>);</span><br><span class="line">    arr[i] = <span class="built_in">eval</span>(arr[i]);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; origArr.length; i++) &#123;</span><br><span class="line">    template = template.replace(origArr[i], arr[i]);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> template;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>方法二和方法同样先通过正则匹配出了模板代码，然后通过把{{ }}里的代码取出来进行<code>eval</code>直接运算得到结果，然后进行替换，这种方法没有了数字的限制。</p>
+<h3 id="方法三"><a href="#方法三" class="headerlink" title="方法三"></a>方法三</h3><p>方法一和二的具体实现代码其实都不少，便有了方法三，核心代码如下：</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">let</span> svg = <span class="string">'&lt;path d="M13.0780339,0.5 L0.574889123,22.2905543 L3.49834121,27.5 L&#123;&#123;x+31&#125;&#125;.7099611,27.5 L&#123;&#123;x+44&#125;&#125;.1969137,5.64739256 L&#123;&#123;x+41&#125;&#125;.4022785,0.5 L13.0780339,0.5 Z"&gt;&lt;/path&gt;'</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">parseTemplate</span>(<span class="params">template, x</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">let</span> str = template.replace(<span class="regexp">/&#123;&#123;/g</span>, <span class="string">"$&#123;"</span>).replace(<span class="regexp">/&#125;&#125;/g</span>, <span class="string">"&#125;"</span>);</span><br><span class="line">  <span class="keyword">return</span> <span class="built_in">eval</span>(<span class="string">"`"</span> + str + <span class="string">"`"</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>这种方式利用了<code>js</code>的字符串模板运算，将 <code>{{x+31}}</code>改成了<code>xxx${x+31}xxx</code>，再通过<code>eval</code>运算直接得出最终想要的字符串。</p>
+<p>方法三相对于上两种代码量少了不少，而且也不难理解。</p>
+]]></content>
+      <categories>
+        <category>javascript</category>
+      </categories>
+      <tags>
+        <tag>javascript</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>vue3 响应原理</title>
     <url>/2021/03/09/vue3%E4%B9%8Beffect/</url>
     <content><![CDATA[<p>注：以下说明基于 vue3 v3.0.7</p>
@@ -854,30 +858,26 @@
       </tags>
   </entry>
   <entry>
-    <title>SVG文字外框自适应 &amp; 模板运算替换</title>
-    <url>/2020/09/09/%E6%A8%A1%E6%9D%BF%E8%BF%90%E7%AE%97%E6%9B%BF%E6%8D%A2/</url>
-    <content><![CDATA[<p>如果我们动态的修改svg内部文字的长度，很容易遇到文字超出外框的情况，这个时候我们就需要自动调节外框的长度。</p>
-<p>假设<code>svg</code>的外框路径代码如下，其中<code>{{x+*}}</code>中的x就是文字的长度，我们需要加上后面的数字，并把原先的模板替换掉。</p>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">&lt;path d=<span class="string">"M13.0780339,0.5 L0.574889123,22.2905543 L3.49834121,27.5 L&#123;&#123;x+31&#125;&#125;.7099611,27.5 L&#123;&#123;x+44&#125;&#125;.1969137,5.64739256 L&#123;&#123;x+41&#125;&#125;.4022785,0.5 L13.0780339,0.5 Z"</span>&gt;&lt;<span class="regexp">/path&gt;</span></span><br></pre></td></tr></table></figure>
+    <title>react脚手架</title>
+    <url>/2019/04/12/react%E8%84%9A%E6%89%8B%E6%9E%B6/</url>
+    <content><![CDATA[<p>最近有机会研究了一下<code>wieldy-react</code>，也算是颇有收获，结合之前创建脚手架的经验，个人依据<code>wieldy-react</code>尝试创建了一个<code>react</code>工程。</p>
+<p>工程目录如下：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">src                               &#x2F;&#x2F; 源码根目录</span><br><span class="line">|   index.js                      &#x2F;&#x2F; 主入口</span><br><span class="line">|   NextApp.js                    &#x2F;&#x2F; 次入口</span><br><span class="line">|   serviceWorker.js</span><br><span class="line">|</span><br><span class="line">+---apis</span><br><span class="line">|       api.js                     &#x2F;&#x2F; 接口</span><br><span class="line">|</span><br><span class="line">+---appRedux                       &#x2F;&#x2F; 状态管理</span><br><span class="line">|   +---actions</span><br><span class="line">|   |       Auth.js</span><br><span class="line">|   |       Chat.js</span><br><span class="line">|   |       index.js</span><br><span class="line">|   |</span><br><span class="line">|   +---reducers</span><br><span class="line">|   |       Auth.js</span><br><span class="line">|   |       Chat.js</span><br><span class="line">|   |       index.js</span><br><span class="line">|   |</span><br><span class="line">|   +---sagas</span><br><span class="line">|   |       Auth.js</span><br><span class="line">|   |       Chat.js</span><br><span class="line">|   |       index.js</span><br><span class="line">|   |</span><br><span class="line">|   \---store                      &#x2F;&#x2F; store</span><br><span class="line">|           index.js</span><br><span class="line">|</span><br><span class="line">+---assets                         &#x2F;&#x2F; 资源文件夹</span><br><span class="line">|   \---images                     &#x2F;&#x2F; 图片资源</span><br><span class="line">+---components                     &#x2F;&#x2F; 无状态组件文件夹</span><br><span class="line">|   \---CircularProgress</span><br><span class="line">|           index.js</span><br><span class="line">|</span><br><span class="line">+---constants                      &#x2F;&#x2F; 常量配置</span><br><span class="line">|       ActionTypes.js</span><br><span class="line">|       DomainSetting.js</span><br><span class="line">|</span><br><span class="line">+---containers                     &#x2F;&#x2F; 有状态组件文件夹</span><br><span class="line">|   |   SignIn.js</span><br><span class="line">|   |   Socket.js</span><br><span class="line">|   |</span><br><span class="line">|   +---App</span><br><span class="line">|   |       index.js</span><br><span class="line">|   |       MainApp.js</span><br><span class="line">|   |</span><br><span class="line">|   +---Chat</span><br><span class="line">|   |       FriendList.js</span><br><span class="line">|   |       index.js</span><br><span class="line">|   |</span><br><span class="line">|   \---Sidebar</span><br><span class="line">|           index.js</span><br><span class="line">|</span><br><span class="line">+---helper                        &#x2F;&#x2F; 工具函数</span><br><span class="line">|       asyncComponent.js         &#x2F;&#x2F; 异步加载组件</span><br><span class="line">|</span><br><span class="line">+---routes                        &#x2F;&#x2F; 页面路由以及页面组件</span><br><span class="line">|   |   index.js</span><br><span class="line">|   |</span><br><span class="line">|   \---Chat</span><br><span class="line">|           index.js</span><br><span class="line">|</span><br><span class="line">\---style                         &#x2F;&#x2F; 样式</span><br><span class="line">    |   style.less</span><br><span class="line">    |</span><br><span class="line">    +---base                      &#x2F;&#x2F; 基础样式</span><br><span class="line">    |       base.less</span><br><span class="line">    |       index.less</span><br><span class="line">    |</span><br><span class="line">    +---global                    &#x2F;&#x2F; 全局样式</span><br><span class="line">    |       index.less</span><br><span class="line">    |       mixin.less</span><br><span class="line">    |       variables.less</span><br><span class="line">    |</span><br><span class="line">    \---layout                    &#x2F;&#x2F; 布局样式</span><br><span class="line">            ant-layout.less       &#x2F;&#x2F; antd样式修改</span><br><span class="line">            index.less</span><br></pre></td></tr></table></figure>
 
-<h3 id="方法一"><a href="#方法一" class="headerlink" title="方法一"></a>方法一</h3><p>最初我的想法是先用正则把 <code>{{x+31}}、{{x+44}}、{{x+41}}</code>全都匹配出来，然后再通过正则把里面的数字匹配出来，然后和<code>x</code>相加，把得到的最终值替换回去，核心代码如下：</p>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">let</span> svg = <span class="string">'&lt;path d="M13.0780339,0.5 L0.574889123,22.2905543 L3.49834121,27.5 L&#123;&#123;x+31&#125;&#125;.7099611,27.5 L&#123;&#123;x+44&#125;&#125;.1969137,5.64739256 L&#123;&#123;x+41&#125;&#125;.4022785,0.5 L13.0780339,0.5 Z"&gt;&lt;/path&gt;'</span></span><br><span class="line"></span><br><span class="line">svg.match(<span class="regexp">/&#123;&#123;x+.*?&#125;&#125;/g</span>) <span class="comment">// 匹配出模板</span></span><br><span class="line"></span><br><span class="line">string.match(<span class="regexp">/[0-9]+/</span>) <span class="comment">// 匹配出模板里的字符串</span></span><br></pre></td></tr></table></figure>
-
-<h3 id="方法二"><a href="#方法二" class="headerlink" title="方法二"></a>方法二</h3><p>方法一虽然实现起来比较简单，但是看起来比较的low，而且限定只能处理数字，便有了方法二，核心代码如下：</p>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">parseTemplate</span>(<span class="params">template, x</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">let</span> origArr = template.match(<span class="regexp">/&#123;&#123;x+.*?&#125;&#125;/g</span>);</span><br><span class="line">  <span class="keyword">let</span> arr = <span class="built_in">JSON</span>.parse(<span class="built_in">JSON</span>.stringify(origArr));</span><br><span class="line"></span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; arr.length; i++) &#123;</span><br><span class="line">    arr[i] = arr[i].replace(<span class="regexp">/&#123;&#123;|&#125;&#125;/g</span>, <span class="string">""</span>);</span><br><span class="line">    arr[i] = <span class="built_in">eval</span>(arr[i]);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; origArr.length; i++) &#123;</span><br><span class="line">    template = template.replace(origArr[i], arr[i]);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> template;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>方法二和方法同样先通过正则匹配出了模板代码，然后通过把{{ }}里的代码取出来进行<code>eval</code>直接运算得到结果，然后进行替换，这种方法没有了数字的限制。</p>
-<h3 id="方法三"><a href="#方法三" class="headerlink" title="方法三"></a>方法三</h3><p>方法一和二的具体实现代码其实都不少，便有了方法三，核心代码如下：</p>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">let</span> svg = <span class="string">'&lt;path d="M13.0780339,0.5 L0.574889123,22.2905543 L3.49834121,27.5 L&#123;&#123;x+31&#125;&#125;.7099611,27.5 L&#123;&#123;x+44&#125;&#125;.1969137,5.64739256 L&#123;&#123;x+41&#125;&#125;.4022785,0.5 L13.0780339,0.5 Z"&gt;&lt;/path&gt;'</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">parseTemplate</span>(<span class="params">template, x</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">let</span> str = template.replace(<span class="regexp">/&#123;&#123;/g</span>, <span class="string">"$&#123;"</span>).replace(<span class="regexp">/&#125;&#125;/g</span>, <span class="string">"&#125;"</span>);</span><br><span class="line">  <span class="keyword">return</span> <span class="built_in">eval</span>(<span class="string">"`"</span> + str + <span class="string">"`"</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>这种方式利用了<code>js</code>的字符串模板运算，将 <code>{{x+31}}</code>改成了<code>xxx${x+31}xxx</code>，再通过<code>eval</code>运算直接得出最终想要的字符串。</p>
-<p>方法三相对于上两种代码量少了不少，而且也不难理解。</p>
+<p>相比较我之前搭建的脚手架主要的不同点主要有如下几点：</p>
+<ul>
+<li>将路由集成到了 redux 之中</li>
+<li>组件拆分到了三个目录当中，分别为<code>components</code>，<code>containers</code>，<code>routes</code>，分别存放无状态组件，有状态容器和路由。</li>
+</ul>
+<h2 id="局部热更新"><a href="#局部热更新" class="headerlink" title="局部热更新"></a>局部热更新</h2><p>虽然<code>Create React App</code>已经实现了热更新，但每次修改之后都需要整个重新刷新页面，但很多时候我们只修改了局部的一小块，刷新整个页面会造成不必要的性能浪费，因此可以使用<code>react-hot-loader</code>来实现局部刷新。</p>
+<p>总体来说，这套开发模式比我之前的个人认为是一种进步，如果对具体细节感兴趣，<a href="https://github.com/1016482011/chat/tree/save/template" target="_blank" rel="noopener">请移步</a></p>
 ]]></content>
       <categories>
-        <category>javascript</category>
+        <category>react</category>
       </categories>
       <tags>
-        <tag>javascript</tag>
+        <tag>react</tag>
+        <tag>脚手架</tag>
       </tags>
   </entry>
   <entry>
@@ -908,6 +908,31 @@
       </categories>
       <tags>
         <tag>chrome-plugin</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>webpack -git</title>
+    <url>/2019/02/23/%E6%A8%A1%E5%9D%97%E6%89%93%E5%8C%85/webpack02/</url>
+    <content><![CDATA[<p>继上次 webpack 打包配置完成之后，后续针对使用过程中遇到的问题又进行了些许修改</p>
+<p>因为此次工作的目标是在 git 上发布，所以一个工具使用的例子就必不可少了，经过几次修改后，文件夹结构如下</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">project</span><br><span class="line">├── dist</span><br><span class="line">|   ├── xx.js</span><br><span class="line">|   └── xx.min.js</span><br><span class="line">├── example</span><br><span class="line">|   ├── css</span><br><span class="line">|   ├── js</span><br><span class="line">|   └── *.html</span><br><span class="line">├── src</span><br><span class="line">|   └── *.ts</span><br><span class="line">├── package.json</span><br><span class="line">├── tsconfig.json</span><br><span class="line">├── webpack.dev.js</span><br><span class="line">└── webpack.prod.js</span><br></pre></td></tr></table></figure>
+
+<p><code>dist</code>用来存放打包之后的文件，<code>example</code>是使用样例，<code>src</code>是工具源码，<code>webpack.dev.js</code>开发配置，<code>webpack.prod.js</code>生成配置</p>
+<p>首先是<code>example</code>文件夹下都是一些简单的<code>html</code>文件，其会直接引用<code>dist</code>文件夹生成的代码</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"../dist/xx.js"</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>两个 webpack 配置基本一致，下面是<code>webpack.dev.js</code>的配置：</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> path = <span class="built_in">require</span>(<span class="string">'path'</span>)</span><br><span class="line"><span class="keyword">const</span> CleanWebpackPlugin = <span class="built_in">require</span>(<span class="string">'clean-webpack-plugin'</span>)</span><br><span class="line"><span class="keyword">const</span> UglifyJsPlugin = <span class="built_in">require</span>(<span class="string">'uglifyjs-webpack-plugin'</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> config = &#123;</span><br><span class="line">  mode: <span class="string">'development'</span>,</span><br><span class="line">  entry: &#123;</span><br><span class="line">    modelTool: <span class="string">'./src/index.ts'</span></span><br><span class="line">  &#125;,</span><br><span class="line">  devtool: <span class="string">'source-map'</span>,</span><br><span class="line">  bail: <span class="literal">true</span>,</span><br><span class="line">  output: &#123;</span><br><span class="line">    filename: <span class="string">'[name].js'</span>,</span><br><span class="line">    path: path.resolve(__dirname, <span class="string">'dist'</span>),</span><br><span class="line">    libraryTarget: <span class="string">'this'</span></span><br><span class="line">  &#125;,</span><br><span class="line">  resolve: &#123;</span><br><span class="line">    extensions: [<span class="string">'.ts'</span>, <span class="string">'.js'</span>]</span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="built_in">module</span>: &#123;</span><br><span class="line">    rules: [</span><br><span class="line">      &#123;</span><br><span class="line">        test: <span class="regexp">/\.ts?$/</span>,</span><br><span class="line">        use: <span class="string">'ts-loader'</span>,</span><br><span class="line">        exclude: <span class="regexp">/node_modules/</span></span><br><span class="line">      &#125;,</span><br><span class="line">      &#123;</span><br><span class="line">        test: <span class="regexp">/\.js$/</span>,</span><br><span class="line">        exclude: <span class="regexp">/(node_modules|bower_components)/</span>,</span><br><span class="line">        use: &#123;</span><br><span class="line">          loader: <span class="string">'babel-loader'</span>,</span><br><span class="line">          options: &#123;</span><br><span class="line">            presets: [<span class="string">'@babel/preset-env'</span>],</span><br><span class="line">            plugins: [<span class="string">'@babel/transform-runtime'</span>]</span><br><span class="line">          &#125;</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;</span><br><span class="line">    ]</span><br><span class="line">  &#125;,</span><br><span class="line">  plugins: [</span><br><span class="line">    <span class="keyword">new</span> CleanWebpackPlugin([<span class="string">'dist/modelTool.js'</span>, <span class="string">'dist/modelTool.js.map'</span>])</span><br><span class="line">  ],</span><br><span class="line">  optimization: &#123;</span><br><span class="line">    minimizer: [<span class="keyword">new</span> UglifyJsPlugin()]</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="built_in">module</span>.exports = config</span><br></pre></td></tr></table></figure>
+
+<p><code>webpack.prod.js</code> 不同点在于 <code>mode</code>为<code>production</code>，<code>devtool</code>为<code>none</code>，<code>output</code>中的<code>filename</code>为<code>[name].min.js</code>，其他的都是一致的。</p>
+<p>添加 example 的目的一是可以在开发的时候测一下功能是否正常，二是传到 git 上后可以作为使用示例。</p>
+]]></content>
+      <categories>
+        <category>webpack</category>
+      </categories>
+      <tags>
+        <tag>git</tag>
+        <tag>webpack</tag>
       </tags>
   </entry>
   <entry>
@@ -944,31 +969,6 @@
       <tags>
         <tag>webpack</tag>
         <tag>rollup</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>webpack -git</title>
-    <url>/2019/02/23/%E6%A8%A1%E5%9D%97%E6%89%93%E5%8C%85/webpack02/</url>
-    <content><![CDATA[<p>继上次 webpack 打包配置完成之后，后续针对使用过程中遇到的问题又进行了些许修改</p>
-<p>因为此次工作的目标是在 git 上发布，所以一个工具使用的例子就必不可少了，经过几次修改后，文件夹结构如下</p>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">project</span><br><span class="line">├── dist</span><br><span class="line">|   ├── xx.js</span><br><span class="line">|   └── xx.min.js</span><br><span class="line">├── example</span><br><span class="line">|   ├── css</span><br><span class="line">|   ├── js</span><br><span class="line">|   └── *.html</span><br><span class="line">├── src</span><br><span class="line">|   └── *.ts</span><br><span class="line">├── package.json</span><br><span class="line">├── tsconfig.json</span><br><span class="line">├── webpack.dev.js</span><br><span class="line">└── webpack.prod.js</span><br></pre></td></tr></table></figure>
-
-<p><code>dist</code>用来存放打包之后的文件，<code>example</code>是使用样例，<code>src</code>是工具源码，<code>webpack.dev.js</code>开发配置，<code>webpack.prod.js</code>生成配置</p>
-<p>首先是<code>example</code>文件夹下都是一些简单的<code>html</code>文件，其会直接引用<code>dist</code>文件夹生成的代码</p>
-<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"../dist/xx.js"</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<p>两个 webpack 配置基本一致，下面是<code>webpack.dev.js</code>的配置：</p>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> path = <span class="built_in">require</span>(<span class="string">'path'</span>)</span><br><span class="line"><span class="keyword">const</span> CleanWebpackPlugin = <span class="built_in">require</span>(<span class="string">'clean-webpack-plugin'</span>)</span><br><span class="line"><span class="keyword">const</span> UglifyJsPlugin = <span class="built_in">require</span>(<span class="string">'uglifyjs-webpack-plugin'</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> config = &#123;</span><br><span class="line">  mode: <span class="string">'development'</span>,</span><br><span class="line">  entry: &#123;</span><br><span class="line">    modelTool: <span class="string">'./src/index.ts'</span></span><br><span class="line">  &#125;,</span><br><span class="line">  devtool: <span class="string">'source-map'</span>,</span><br><span class="line">  bail: <span class="literal">true</span>,</span><br><span class="line">  output: &#123;</span><br><span class="line">    filename: <span class="string">'[name].js'</span>,</span><br><span class="line">    path: path.resolve(__dirname, <span class="string">'dist'</span>),</span><br><span class="line">    libraryTarget: <span class="string">'this'</span></span><br><span class="line">  &#125;,</span><br><span class="line">  resolve: &#123;</span><br><span class="line">    extensions: [<span class="string">'.ts'</span>, <span class="string">'.js'</span>]</span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="built_in">module</span>: &#123;</span><br><span class="line">    rules: [</span><br><span class="line">      &#123;</span><br><span class="line">        test: <span class="regexp">/\.ts?$/</span>,</span><br><span class="line">        use: <span class="string">'ts-loader'</span>,</span><br><span class="line">        exclude: <span class="regexp">/node_modules/</span></span><br><span class="line">      &#125;,</span><br><span class="line">      &#123;</span><br><span class="line">        test: <span class="regexp">/\.js$/</span>,</span><br><span class="line">        exclude: <span class="regexp">/(node_modules|bower_components)/</span>,</span><br><span class="line">        use: &#123;</span><br><span class="line">          loader: <span class="string">'babel-loader'</span>,</span><br><span class="line">          options: &#123;</span><br><span class="line">            presets: [<span class="string">'@babel/preset-env'</span>],</span><br><span class="line">            plugins: [<span class="string">'@babel/transform-runtime'</span>]</span><br><span class="line">          &#125;</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;</span><br><span class="line">    ]</span><br><span class="line">  &#125;,</span><br><span class="line">  plugins: [</span><br><span class="line">    <span class="keyword">new</span> CleanWebpackPlugin([<span class="string">'dist/modelTool.js'</span>, <span class="string">'dist/modelTool.js.map'</span>])</span><br><span class="line">  ],</span><br><span class="line">  optimization: &#123;</span><br><span class="line">    minimizer: [<span class="keyword">new</span> UglifyJsPlugin()]</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="built_in">module</span>.exports = config</span><br></pre></td></tr></table></figure>
-
-<p><code>webpack.prod.js</code> 不同点在于 <code>mode</code>为<code>production</code>，<code>devtool</code>为<code>none</code>，<code>output</code>中的<code>filename</code>为<code>[name].min.js</code>，其他的都是一致的。</p>
-<p>添加 example 的目的一是可以在开发的时候测一下功能是否正常，二是传到 git 上后可以作为使用示例。</p>
-]]></content>
-      <categories>
-        <category>webpack</category>
-      </categories>
-      <tags>
-        <tag>git</tag>
-        <tag>webpack</tag>
       </tags>
   </entry>
 </search>
