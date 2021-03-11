@@ -176,16 +176,16 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">23</span>
+          <span class="site-state-item-count">25</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
-        <span class="site-state-item-count">13</span>
+        <span class="site-state-item-count">14</span>
         <span class="site-state-item-name">分类</span>
       </div>
       <div class="site-state-item site-state-tags">
-        <span class="site-state-item-count">23</span>
+        <span class="site-state-item-count">24</span>
         <span class="site-state-item-name">标签</span>
       </div>
   </nav>
@@ -226,6 +226,193 @@
       
 
       
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="blog.a331.info/2019/03/26/git/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="陈龙">
+      <meta itemprop="description" content="知识总结">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="陈龙·今朝">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2019/03/26/git/" class="post-title-link" itemprop="url">git</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2019-03-26 20:11:50" itemprop="dateCreated datePublished" datetime="2019-03-26T20:11:50+08:00">2019-03-26</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">更新于</span>
+        <time title="修改时间：2021-01-08 11:10:29" itemprop="dateModified" datetime="2021-01-08T11:10:29+08:00">2021-01-08</time>
+      </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/git/" itemprop="url" rel="index"><span itemprop="name">git</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p>最近工作中在使用 git 来管理项目，以下是对于一些自己实际遇到一些坑的总结。</p>
+<h2 id="git-clone"><a href="#git-clone" class="headerlink" title="git clone"></a>git clone</h2><p>之前遇到一个比较特殊的情况，同一个项目下两个分支一个是开发代码，一个是文档工具，切换分支不太方便，通过以下方式来重命名文件夹名称。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git clone 项目地址 重命名</span><br></pre></td></tr></table></figure>
+
+<h2 id="添加本地仓库"><a href="#添加本地仓库" class="headerlink" title="添加本地仓库"></a>添加本地仓库</h2><p>刚开始的时候我是使用<code>git add .</code>来添加修改文件到本地仓库的，但有一个由于我的疏忽，我没有在根目下执行这条指令，导致一些修改文件没有被提交。在这件事之后我改用<code>git add --all</code>来添加所有的改动，并使用<code>git status</code>查看文件是否正确。</p>
+<h2 id="新建分支"><a href="#新建分支" class="headerlink" title="新建分支"></a>新建分支</h2><p>当需要对一个项目进行大改一般会新建一个分支，使用<code>git checkout -b 分支名称</code>来新建一个分支并同时切换到那个分支上，使用<code>git checkout 分支名称</code>来切换分支，使用<code>git merge 分支名称</code>将指定分支合并到当前分支。</p>
+<h2 id="切换本地默认分支"><a href="#切换本地默认分支" class="headerlink" title="切换本地默认分支"></a>切换本地默认分支</h2><p>当从主分支切换到其他分支时，每次提交拉取代码时都要加上<code>origin 分支名称</code>，可使用<code>git push --set-upstream origin 分支名称</code>将指定分支切换为本地默认分支。</p>
+<h2 id="git-commit-回退"><a href="#git-commit-回退" class="headerlink" title="git commit 回退"></a>git commit 回退</h2><p>有时<code>commit</code>代码之后发现把无用的东西提交了，可使用<code>git log</code>打印出最近的<code>commit</code>记录，然后通过<code>git reset --soft|--mixed|--hard &lt;commit_id&gt;</code>来进行<code>commit</code>回退。</p>
+<ul>
+<li>mixed 会保留源码,只是将 git commit 和 index 信息回退到了某个版本.</li>
+<li>soft 保留源码,只回退到 commit 信息到某个版本.不涉及 index 的回退,如果还需要提交,直接 commit 即可.</li>
+<li>hard 源码也会回退到某个版本,commit 和 index 都会回退到某个版本.(注意,这种方式是改变本地代码仓库源码)</li>
+</ul>
+<p>提交时使用 <code>git push -f</code></p>
+<h2 id="更换远程地址"><a href="#更换远程地址" class="headerlink" title="更换远程地址"></a>更换远程地址</h2><p>遇到过一次项目远程地址更换，可使用<code>git remote set-url origin https://gitee.com/yunbin_product/jellyfish.git</code>进行更换</p>
+<h2 id="git-区分大小写"><a href="#git-区分大小写" class="headerlink" title="git 区分大小写"></a>git 区分大小写</h2><p>记得一次我修改了某文件夹的首字母的大小写，结果提交的时候并没有产生修改记录，导致了其他人运行项目时出错，后经排查是 git 忽略了大小写，可使用如下配置正确区分大小写。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git config core.ignorecase false</span><br></pre></td></tr></table></figure>
+
+<h2 id="git-用户名邮箱等配置"><a href="#git-用户名邮箱等配置" class="headerlink" title="git 用户名邮箱等配置"></a>git 用户名邮箱等配置</h2><p>使用<code>git config --list</code>可列出所有的 git 配置，使用如下方式配置用户名邮箱等</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git config --global user.name "1016482011"</span><br><span class="line">git config --global user.email 2956957982@qq.com</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="blog.a331.info/2019/03/22/localStorage/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="陈龙">
+      <meta itemprop="description" content="知识总结">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="陈龙·今朝">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2019/03/22/localStorage/" class="post-title-link" itemprop="url">关于设置localStorage过期时间</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2019-03-22 22:56:04" itemprop="dateCreated datePublished" datetime="2019-03-22T22:56:04+08:00">2019-03-22</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">更新于</span>
+        <time title="修改时间：2020-07-23 13:18:04" itemprop="dateModified" datetime="2020-07-23T13:18:04+08:00">2020-07-23</time>
+      </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/javascript/" itemprop="url" rel="index"><span itemprop="name">javascript</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p>今天有被问到如何实现给 localStorage 添加过期时间。经过慢慢思考，我想到的方法下可以归结为以下几种：</p>
+<ol>
+<li>将时间拼接到值之后。比如<code>set(&quot;username&quot;,&quot;1553264048068;&quot;,1553264048068)</code>，实际存的值为<code>localStorage.setItem(&quot;username&quot;,&quot;1553264048068;;1553264048068&quot;)</code>。取值的策略时反向寻找到第一个分割符<code>;</code>,并将将其截取。</li>
+<li>使用对象进行二次组合。比如<code>set(&quot;username&quot;,&quot;Marcus&quot;,1553264048068)</code>,实际存的值为<code>localStorage.setItem({&quot;value&quot;:&quot;Marcus&quot;,&quot;expire&quot;:1553264048068})</code>。取值的策略是<code>JSON.parse</code>后去取出值和时间。</li>
+</ol>
+<p>两种方法的本质都一样，都是将值和时间进行了拼接，在我现在看来这两个方法有个最大的问题就是修改了原来的值，在解析的时候往往是 bug 产生的源泉，因为你很难去预期使用者会传入什么值。</p>
+<p>后来在阅读了<a href="https://github.com/marcuswestin/store.js" target="_blank" rel="noopener">store.js</a>后，恍然大悟，<code>namespace</code>，我无法预期用户值的类型，但我可以预期 name 的类型，在 name 上加上一个同为 string 类型的命名空间便可解决这个问题。<code>set(&quot;username&quot;,&quot;Marcus&quot;,1553264048068)</code>，实际存为<code>localStorage.setItem(&quot;username&quot;:&quot;Marcus&quot;)</code>和<code>localStorage.setItem(&quot;expire_username&quot;:&quot;1553264048068&quot;)</code>。</p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
     
 
 
@@ -467,188 +654,10 @@
 
 
 
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="blog.a331.info/2019/02/26/JS%E6%9D%83%E5%A8%81%E6%8C%87%E5%8D%97/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="陈龙">
-      <meta itemprop="description" content="知识总结">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="陈龙·今朝">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2019/02/26/JS%E6%9D%83%E5%A8%81%E6%8C%87%E5%8D%97/" class="post-title-link" itemprop="url">JS权威指南</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2019-02-26 14:31:04" itemprop="dateCreated datePublished" datetime="2019-02-26T14:31:04+08:00">2019-02-26</time>
-    </span>
-      <span class="post-meta-item">
-        <span class="post-meta-item-icon">
-          <i class="far fa-calendar-check"></i>
-        </span>
-        <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2020-11-10 17:36:07" itemprop="dateModified" datetime="2020-11-10T17:36:07+08:00">2020-11-10</time>
-      </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/javascript/" itemprop="url" rel="index"><span itemprop="name">javascript</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p>《JS 权威指南》是我最喜爱的一本书，最早接触前端是在 2015 年（大二）年底的寒假，起初我只是单纯的对 js 在浏览器的表现感兴趣，后来通过 js 了解了 html，css，php，之后就一发不可收拾，彻底爱上了 web 这一行。</p>
-<p>起初的学习比较迷茫，与前端相关的、不相关的都花时间去了解学习实践，学习初期主要是 bootstrap、jquery、thinkphp，主要是是一些当时算是比较流行的一些类库和框架，平时也会看一些网络、数据结构、数据库方面的知识。但随着时间的推移，实践的增加，越发觉得自己在解决问题的能力上很欠缺，主要是 css 和 js 上的。每次遇到一个 js 问题，我都需要去网上搜索答案，往往搜到的答案只是提供直接的解决方法，对于发生此问题的原因只有一个简短的说明，作为小白的我经常看的一脸懵逼，貌似懂了，但又不太懂。</p>
-<p>一次偶尔的机会大三上学期，我在学校图书馆找书时，看到了权威指南这本书，第一眼就被它厚厚的身板吸引住了，有一千页，这让我很好奇教学视频里几个小时就能讲完的内容为何需要这么多页去讲解。在简单翻阅了几章之后，瞬间让我有种相见很晚的感觉，于是便自己在网上买了一本，看完这本书花了我不少时间，一共看了 3 遍，历时大半年，当初看的时候顿时觉得之前 js 都是白学了，当初遇到的一些问题现在回想起来也都明白了个七七八八。</p>
-<p>后来在大三下学期，我再一次精读了此书的前 500 页，并把其中的内容做了摘录，并在近期发布到了 gitbook 上，其内容可通过如下地址访问：</p>
-<p><a href="https://2956957982.gitbook.io/js/" target="_blank" rel="noopener">https://2956957982.gitbook.io/js/</a></p>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="blog.a331.info/2019/02/23/%E6%A8%A1%E5%9D%97%E6%89%93%E5%8C%85/webpack02/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="陈龙">
-      <meta itemprop="description" content="知识总结">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="陈龙·今朝">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2019/02/23/%E6%A8%A1%E5%9D%97%E6%89%93%E5%8C%85/webpack02/" class="post-title-link" itemprop="url">webpack -git</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2019-02-23 16:58:03" itemprop="dateCreated datePublished" datetime="2019-02-23T16:58:03+08:00">2019-02-23</time>
-    </span>
-      <span class="post-meta-item">
-        <span class="post-meta-item-icon">
-          <i class="far fa-calendar-check"></i>
-        </span>
-        <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2020-07-23 13:18:04" itemprop="dateModified" datetime="2020-07-23T13:18:04+08:00">2020-07-23</time>
-      </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/webpack/" itemprop="url" rel="index"><span itemprop="name">webpack</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p>继上次 webpack 打包配置完成之后，后续针对使用过程中遇到的问题又进行了些许修改</p>
-<p>因为此次工作的目标是在 git 上发布，所以一个工具使用的例子就必不可少了，经过几次修改后，文件夹结构如下</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">project</span><br><span class="line">├── dist</span><br><span class="line">|   ├── xx.js</span><br><span class="line">|   └── xx.min.js</span><br><span class="line">├── example</span><br><span class="line">|   ├── css</span><br><span class="line">|   ├── js</span><br><span class="line">|   └── *.html</span><br><span class="line">├── src</span><br><span class="line">|   └── *.ts</span><br><span class="line">├── package.json</span><br><span class="line">├── tsconfig.json</span><br><span class="line">├── webpack.dev.js</span><br><span class="line">└── webpack.prod.js</span><br></pre></td></tr></table></figure>
-
-<p><code>dist</code>用来存放打包之后的文件，<code>example</code>是使用样例，<code>src</code>是工具源码，<code>webpack.dev.js</code>开发配置，<code>webpack.prod.js</code>生成配置</p>
-<p>首先是<code>example</code>文件夹下都是一些简单的<code>html</code>文件，其会直接引用<code>dist</code>文件夹生成的代码</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"../dist/xx.js"</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<p>两个 webpack 配置基本一致，下面是<code>webpack.dev.js</code>的配置：</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> path = <span class="built_in">require</span>(<span class="string">'path'</span>)</span><br><span class="line"><span class="keyword">const</span> CleanWebpackPlugin = <span class="built_in">require</span>(<span class="string">'clean-webpack-plugin'</span>)</span><br><span class="line"><span class="keyword">const</span> UglifyJsPlugin = <span class="built_in">require</span>(<span class="string">'uglifyjs-webpack-plugin'</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> config = &#123;</span><br><span class="line">  mode: <span class="string">'development'</span>,</span><br><span class="line">  entry: &#123;</span><br><span class="line">    modelTool: <span class="string">'./src/index.ts'</span></span><br><span class="line">  &#125;,</span><br><span class="line">  devtool: <span class="string">'source-map'</span>,</span><br><span class="line">  bail: <span class="literal">true</span>,</span><br><span class="line">  output: &#123;</span><br><span class="line">    filename: <span class="string">'[name].js'</span>,</span><br><span class="line">    path: path.resolve(__dirname, <span class="string">'dist'</span>),</span><br><span class="line">    libraryTarget: <span class="string">'this'</span></span><br><span class="line">  &#125;,</span><br><span class="line">  resolve: &#123;</span><br><span class="line">    extensions: [<span class="string">'.ts'</span>, <span class="string">'.js'</span>]</span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="built_in">module</span>: &#123;</span><br><span class="line">    rules: [</span><br><span class="line">      &#123;</span><br><span class="line">        test: <span class="regexp">/\.ts?$/</span>,</span><br><span class="line">        use: <span class="string">'ts-loader'</span>,</span><br><span class="line">        exclude: <span class="regexp">/node_modules/</span></span><br><span class="line">      &#125;,</span><br><span class="line">      &#123;</span><br><span class="line">        test: <span class="regexp">/\.js$/</span>,</span><br><span class="line">        exclude: <span class="regexp">/(node_modules|bower_components)/</span>,</span><br><span class="line">        use: &#123;</span><br><span class="line">          loader: <span class="string">'babel-loader'</span>,</span><br><span class="line">          options: &#123;</span><br><span class="line">            presets: [<span class="string">'@babel/preset-env'</span>],</span><br><span class="line">            plugins: [<span class="string">'@babel/transform-runtime'</span>]</span><br><span class="line">          &#125;</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;</span><br><span class="line">    ]</span><br><span class="line">  &#125;,</span><br><span class="line">  plugins: [</span><br><span class="line">    <span class="keyword">new</span> CleanWebpackPlugin([<span class="string">'dist/modelTool.js'</span>, <span class="string">'dist/modelTool.js.map'</span>])</span><br><span class="line">  ],</span><br><span class="line">  optimization: &#123;</span><br><span class="line">    minimizer: [<span class="keyword">new</span> UglifyJsPlugin()]</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="built_in">module</span>.exports = config</span><br></pre></td></tr></table></figure>
-
-<p><code>webpack.prod.js</code> 不同点在于 <code>mode</code>为<code>production</code>，<code>devtool</code>为<code>none</code>，<code>output</code>中的<code>filename</code>为<code>[name].min.js</code>，其他的都是一致的。</p>
-<p>添加 example 的目的一是可以在开发的时候测一下功能是否正常，二是传到 git 上后可以作为使用示例。</p>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/4/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/4/">4</a><span class="page-number current">5</span><a class="page-number" href="/page/6/">6</a><a class="extend next" rel="next" href="/page/6/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
+    <a class="extend prev" rel="prev" href="/page/4/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/4/">4</a><span class="page-number current">5</span><a class="page-number" href="/page/6/">6</a><a class="page-number" href="/page/7/">7</a><a class="extend next" rel="next" href="/page/6/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
   </nav>
 
 
