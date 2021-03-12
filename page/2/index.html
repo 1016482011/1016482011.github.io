@@ -176,16 +176,16 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">25</span>
+          <span class="site-state-item-count">26</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
-        <span class="site-state-item-count">14</span>
+        <span class="site-state-item-count">15</span>
         <span class="site-state-item-name">分类</span>
       </div>
       <div class="site-state-item site-state-tags">
-        <span class="site-state-item-count">24</span>
+        <span class="site-state-item-count">25</span>
         <span class="site-state-item-name">标签</span>
       </div>
   </nav>
@@ -226,6 +226,96 @@
       
 
       
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="blog.a331.info/2020/11/05/kview/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="陈龙">
+      <meta itemprop="description" content="知识总结">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="陈龙·今朝">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/11/05/kview/" class="post-title-link" itemprop="url">kview</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2020-11-05 19:01:02 / 修改时间：19:40:56" itemprop="dateCreated datePublished" datetime="2020-11-05T19:01:02+08:00">2020-11-05</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/kview/" itemprop="url" rel="index"><span itemprop="name">kview</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p>今年年中接手了一个全新的项目，定位是半解决方案半sdk，之所以加个半是因为，我们需要对外提供一个开箱即用的应用，但同时第三方也可以屏蔽掉我们ui，通过我们暴露的接口实现一套和我们不同风格但功能一样的应用。</p>
+<p>我的方案是，将项目切成三块</p>
+<ul>
+<li>接口sdk</li>
+<li>ui基础组件库</li>
+<li>业务功能实现</li>
+</ul>
+<p>接口层使用typescript实现，ui组件库和业务层使用vue + typescript。</p>
+<p>由于这个项目特殊地方在于需要上大屏展示，用普通的ui 库简单改改无法满足ui 要求，所以在组件上面要求我从 0开始。</p>
+<p>这次要讲的 kview 便是 ui 基础组件库。为了避免后续的重复劳动，和规范 ui的设计，我在项目之初，在实现完接口sdk后，并没有急着实现业务功能，而是拆解ui图纸上的一个个小组件，在实现完这些小组件后再进行业务功能的拼装。</p>
+<p>由于我之前也没有过实现一个ui 库的经验，所以我选择了以同样是 vue的element ui为老师，遇到不清楚的地方，便会一点点的去阅读 element ui的源码，然后应用到自身的项目中（因为我们项目是 typescript的，直接复制源码是无法使用的）。</p>
+<p>在这过程中，我印象比较深刻的有 <code>select</code>组件中 <code>emitter</code>的使用，完美解决了<code>select</code>和<code>option</code>之前的事件触发问题。同样的还有<code>dialog</code>中的<code>popup</code>下拉的<code>popper</code>以及<code>form</code>组件，这些都让我收益良多。</p>
+<p>在样式方面，我之前使用 scss或者less基本就只使用了个嵌套写法，其他和写css一样，这次通过研读element ui的BEM函数的使用，并将至成功应用到了kview中。</p>
+<p>通过这次kview的折腾，对 ui的库的开发和实现有了更深刻的理解和认识。下面附上地址。</p>
+<p><a href="https://github.com/chenlong-frontend/vue-technology-ui" target="_blank" rel="noopener">kview github</a></p>
+<p><a href="http://119.3.156.49:9090/#/zh-CN/" target="_blank" rel="noopener">kview 文档</a></p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
     
 
 
@@ -535,137 +625,6 @@
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 存储值</span></span><br><span class="line">chrome.storage.sync.set(&#123; <span class="attr">token</span>: <span class="string">'token'</span> &#125;, <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;&#125;)</span><br><span class="line"><span class="comment">// 取值</span></span><br><span class="line">chrome.storage.sync.get(<span class="string">'token'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">v</span>) </span>&#123;&#125;)</span><br><span class="line"><span class="comment">// 获取查询当前窗口url</span></span><br><span class="line">chrome.tabs.query(&#123; <span class="attr">active</span>: <span class="literal">true</span>, <span class="attr">currentWindow</span>: <span class="literal">true</span> &#125;, <span class="function"><span class="keyword">function</span>(<span class="params">tabs</span>) </span>&#123;</span><br><span class="line">  url = tabs[<span class="number">0</span>].url</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
 
 <p>由此可以看出如果如浏览器交互不多的话，还是相当简单的，这里是<a href="https://github.com/1016482011/chrome-plugin-bookmarks" target="_blank" rel="noopener">完整的例子</a></p>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="blog.a331.info/2019/07/04/SuperTinyCompiler/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="陈龙">
-      <meta itemprop="description" content="知识总结">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="陈龙·今朝">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2019/07/04/SuperTinyCompiler/" class="post-title-link" itemprop="url">SuperTinyCompiler</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2019-07-04 18:40:20" itemprop="dateCreated datePublished" datetime="2019-07-04T18:40:20+08:00">2019-07-04</time>
-    </span>
-      <span class="post-meta-item">
-        <span class="post-meta-item-icon">
-          <i class="far fa-calendar-check"></i>
-        </span>
-        <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2020-07-23 13:18:04" itemprop="dateModified" datetime="2020-07-23T13:18:04+08:00">2020-07-23</time>
-      </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/compiler/" itemprop="url" rel="index"><span itemprop="name">compiler</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p><a href="https://the-super-tiny-compiler.glitch.me/intro" target="_blank" rel="noopener">原文</a></p>
-<p>这里我们打算将一些类<code>lisp</code>函数编译成类<code>C</code>函数调用。如果你对这两者都不熟悉也没关系，转换关系如下：</p>
-<table>
-<thead>
-<tr>
-<th></th>
-<th>LISP-style</th>
-<th>C-style</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>2+2</td>
-<td>(add 2 2)</td>
-<td>add(2,2)</td>
-</tr>
-<tr>
-<td>4-2</td>
-<td>(subtract 4 2)</td>
-<td>subtract(4,2)</td>
-</tr>
-<tr>
-<td>2+(4-2)</td>
-<td>(add 2 (subtract 4 2))</td>
-<td>add(2,subtract(4,2))</td>
-</tr>
-</tbody></table>
-<p>大多数编译可以拆分为三步：解析、转换和代码生成。</p>
-<p>解析正常可以分为两步：词法分析和语法分析。</p>
-<p>词法分析将原始代码通过分词器分解成独立的符号对象。语法分析将其格式化为抽象语法树。</p>
-<p>以如下代码为例：</p>
-<figure class="highlight lisp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">(<span class="name">add</span> <span class="number">2</span> (<span class="name">subtract</span> <span class="number">4</span> <span class="number">2</span>))</span><br></pre></td></tr></table></figure>
-
-<p>经过分词后得到数据如下：</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">;[</span><br><span class="line">  &#123; <span class="attr">type</span>: <span class="string">'paren'</span>, <span class="attr">value</span>: <span class="string">'('</span> &#125;,</span><br><span class="line">  &#123; <span class="attr">type</span>: <span class="string">'name'</span>, <span class="attr">value</span>: <span class="string">'add'</span> &#125;,</span><br><span class="line">  &#123; <span class="attr">type</span>: <span class="string">'number'</span>, <span class="attr">value</span>: <span class="string">'2'</span> &#125;,</span><br><span class="line">  &#123; <span class="attr">type</span>: <span class="string">'paren'</span>, <span class="attr">value</span>: <span class="string">'('</span> &#125;,</span><br><span class="line">  &#123; <span class="attr">type</span>: <span class="string">'name'</span>, <span class="attr">value</span>: <span class="string">'subtract'</span> &#125;,</span><br><span class="line">  &#123; <span class="attr">type</span>: <span class="string">'number'</span>, <span class="attr">value</span>: <span class="string">'4'</span> &#125;,</span><br><span class="line">  &#123; <span class="attr">type</span>: <span class="string">'number'</span>, <span class="attr">value</span>: <span class="string">'2'</span> &#125;,</span><br><span class="line">  &#123; <span class="attr">type</span>: <span class="string">'paren'</span>, <span class="attr">value</span>: <span class="string">')'</span> &#125;,</span><br><span class="line">  &#123; <span class="attr">type</span>: <span class="string">'paren'</span>, <span class="attr">value</span>: <span class="string">')'</span> &#125;</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
-
-<p>抽象语法树格式如下：</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  type: <span class="string">'Program'</span>,</span><br><span class="line">  body: [&#123;</span><br><span class="line">    type: <span class="string">'CallExpression'</span>,</span><br><span class="line">    name: <span class="string">'add'</span>,</span><br><span class="line">    params: [&#123;</span><br><span class="line">      type: <span class="string">'NumberLiteral'</span>,</span><br><span class="line">      value: <span class="string">'2'</span>,</span><br><span class="line">    &#125;, &#123;</span><br><span class="line">      type: <span class="string">'CallExpression'</span>,</span><br><span class="line">      name: <span class="string">'subtract'</span>,</span><br><span class="line">      params: [&#123;</span><br><span class="line">        type: <span class="string">'NumberLiteral'</span>,</span><br><span class="line">        value: <span class="string">'4'</span>,</span><br><span class="line">      &#125;, &#123;</span><br><span class="line">        type: <span class="string">'NumberLiteral'</span>,</span><br><span class="line">        value: <span class="string">'2'</span>,</span><br><span class="line">      &#125;]</span><br><span class="line">    &#125;]</span><br><span class="line">  &#125;]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>接下来是转换，这一步会使用 AST 的数据来进行转换。他可以是与 AST 一样的语言结构，也可以转换成完全另一个语言。这是使用的是与 AST 一样的语言。</p>
-<p>接着就是遍历转换得到的节点，采用深度优先原则。</p>
-<p>以上述 AST 为例，遍历顺序如下：</p>
-<ol>
-<li>Program</li>
-<li>CallExpression (add)</li>
-<li>NumberLiteral (2)</li>
-<li>CallExpression (subtract)</li>
-<li>NumberLiteral (4)</li>
-<li>NumberLiteral (2)</li>
-</ol>
-<p>最后是代码生成，一般情况下都是使用 AST 的数据结构来生成最终代码</p>
-<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>通过了解编译步骤可以有助我了解<code>babel</code>，另一方面，在工作中，有时候我们能遇到这么一个需求，就是将指定数据结构转换成指定 dom 树来进行渲染，往后遇到类似需求时或许可以参照参照。</p>
 
       
     </div>

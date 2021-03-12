@@ -176,16 +176,16 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">25</span>
+          <span class="site-state-item-count">26</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
-        <span class="site-state-item-count">14</span>
+        <span class="site-state-item-count">15</span>
         <span class="site-state-item-name">分类</span>
       </div>
       <div class="site-state-item site-state-tags">
-        <span class="site-state-item-count">24</span>
+        <span class="site-state-item-count">25</span>
         <span class="site-state-item-name">标签</span>
       </div>
   </nav>
@@ -226,6 +226,142 @@
       
 
       
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="blog.a331.info/2019/03/06/css%E6%A8%A1%E5%9D%97%E5%8C%96/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="陈龙">
+      <meta itemprop="description" content="知识总结">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="陈龙·今朝">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2019/03/06/css%E6%A8%A1%E5%9D%97%E5%8C%96/" class="post-title-link" itemprop="url">css模块化</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2019-03-06 22:21:16" itemprop="dateCreated datePublished" datetime="2019-03-06T22:21:16+08:00">2019-03-06</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">更新于</span>
+        <time title="修改时间：2020-07-23 13:18:04" itemprop="dateModified" datetime="2020-07-23T13:18:04+08:00">2020-07-23</time>
+      </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/css/" itemprop="url" rel="index"><span itemprop="name">css</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p>目前主流的 css 规范大致可以分为<code>OOCSS</code>、<code>SMACSS</code>、<code>BEM</code>、<code>CSS Modules</code>、<code>CSS in JS</code></p>
+<p>在以往写 css 的时候比较随意，加上平时主要精力都在<code>js</code>开发上，对 css 的写法知之甚少，但随着工作时间的增加（快一年了），发现自己一直在重复的写一些 css 代码，并且这些代码维护起来也比较困难，每次需要改一个样式时，都需要在浏览器中使用控制台的<code>Element</code>查看需要修改区域的<code>dom</code>的<code>class</code>，然后通过在<code>css</code>中进行搜索才能定位到问题样式所在。从我个人开发体验上来讲，感到明显的效率低下和维护困难。</p>
+<p>后来在学习的过程中发现了<code>less</code>和<code>sass</code>，但这两个<code>css</code>的预编译框架并没有在写法上提出严格的限制，之前的问题依旧存在。</p>
+<h2 id="OOCSS"><a href="#OOCSS" class="headerlink" title="OOCSS"></a>OOCSS</h2><p>全称<code>Object Oriented CSS</code>，中文为面向对象 css，其主要有两个原则：</p>
+<ol>
+<li><code>Separation of Structure from Skin</code> 独立的结构和样式</li>
+<li><code>Separation of Containers and Content</code> 独立的容器和内容</li>
+</ol>
+<p>所谓结构就是元素的大小，样式指颜色等等，第二点即是指将 html 与 css 进行分离，并对 class 进行抽象剥离，我的理解就是，不要将 class 与你具体页面做关联，比如你在开发<code>home</code>页，在实现其中的导航时，class 命名不要带上<code>home</code></p>
+<p><code>OOCSS</code>的典型代表为<code>Bootstrap</code>，以其<code>button</code>为例：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">button</span> <span class="attr">type</span>=<span class="string">"button"</span> <span class="attr">class</span>=<span class="string">"btn btn-primary btn-lg btn-block"</span>&gt;</span></span><br><span class="line">  button</span><br><span class="line"><span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>可以很容易的看出，其主要分为其他几部分</p>
+<ol>
+<li><code>btn</code>：标准按钮样式</li>
+<li><code>btn-primary</code>：按钮颜色</li>
+<li><code>btn-lg</code>：按钮大小</li>
+<li><code>btn-block</code>：展示为块级按钮</li>
+</ol>
+<p>通过不同的<code>class</code>组合，就可以形成多种按钮</p>
+<p><code>OOCSS</code>的优点如下：</p>
+<ol>
+<li>减少 css 代码</li>
+<li>html 标记简洁，逻辑性强</li>
+<li>语义标记，有利于 SEO</li>
+<li>由于各种 class 可重用，页面加载更快</li>
+<li>拓展性强，不用担心加入的新组件会破坏原有的组件</li>
+<li>有利于维护</li>
+</ol>
+<p>同时<code>OOCSS</code>使用时需要注意如下几点：</p>
+<ol>
+<li><code>OOCSS</code>主要用于大型网站开发，组件复用情况多</li>
+<li><code>OOCSS</code>在整体规划上难度颇高，需要有一定的经验的积累，如果使用不当，将会毫无复用性可言，维护也将异常艰难</li>
+<li>每个组件都需要一个完善的文档</li>
+</ol>
+<h2 id="SMACSS"><a href="#SMACSS" class="headerlink" title="SMACSS"></a>SMACSS</h2><p>了解不多，其通则为：</p>
+<ol>
+<li>结构分类：Base、Layout、Moudule、State、Theme</li>
+<li>命名规则：id 与 class 受限制的使用，名称之间使用分隔线</li>
+</ol>
+<h2 id="BEM"><a href="#BEM" class="headerlink" title="BEM"></a>BEM</h2><p><code>BEM</code>全称<code>Block Element Modifier</code>，<code>BEM</code>吸收了<code>OOCSS</code>的优点，并将 class 分块语义化，在可读性和维护性上个人认为高于<code>OOCSS</code></p>
+<p><code>BEM</code>是目前我在实际开发中使用体验最好的一个规范，由于<code>BEM</code>只是一个规范，有些部分并没有做强制要求，实际使用时我会根据自身经验和项目情况做一些调整，以当前项目使用情况为例：</p>
+<p>styles 文件夹的文件可分为四块</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">index.less</span><br><span class="line">lib - lay.less</span><br><span class="line">mod - modal.less</span><br><span class="line">pag - home.less</span><br></pre></td></tr></table></figure>
+
+<p><code>lib</code>开头的是一些基础的样式或者颜色字体等变量，通用布局和样式重置等，<code>mod</code>是各个组件样式，<code>pag</code>是页面内特殊样式</p>
+<p>以 modal 为例：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.m-modal</span> &#123;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.m-modal__header</span> &#123;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.m-modal__body</span> &#123;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.m-modal__body--nofooter</span> &#123;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.m-modal__footer</span> &#123;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><code>m-modal</code>是<code>Block</code>，<code>header</code>、<code>body</code>、<code>footer</code>是<code>Element</code>，<code>nofooter</code>为<code>Modifier</code>，B 与 M 之间使用<code>__</code>分隔，E 与 M 之间使用<code>--</code>分隔，class 在命名时，最多三段，相比其他规范在保持简短的同时提供了 class 的可读性。</p>
+<p>每个模块之间都是独立的，以组件进行开发，这点与<code>OOCSS</code>很像，<code>BEM</code>可复用性好。另外<code>BEM</code>是功能为导向的，每个模块代表着某个功能，不会出现<code>OOCSS</code>或者<code>SMASS</code>中像<code>.pt-20</code>(<code>padding-top:20px</code>)这种让别人看不懂的名称。</p>
+<p>有关 BEM 注意事项可见<a href="https://www.smashingmagazine.com/2016/06/battling-bem-extended-edition-common-problems-and-how-to-avoid-them/" target="_blank" rel="noopener">这里</a></p>
+<h2 id="CSS-Modules"><a href="#CSS-Modules" class="headerlink" title="CSS Modules"></a>CSS Modules</h2><p>在 react 和 vue 中使用过，其做法是给 class 后拼上一串 hash 值，以此保证样式名称不会冲突</p>
+<h2 id="CSS-in-JS"><a href="#CSS-in-JS" class="headerlink" title="CSS in JS"></a>CSS in JS</h2><p>代表为<a href="https://github.com/styled-components/styled-components" target="_blank" rel="noopener">styled-components</a>，即将样式写到组件内部。</p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p><code>OOCSS</code>和<code>BEM</code>的实施离不开 ui 设计，在开发之前，ui 需要有自己的一套组件库（图片），开发应当在开发具体页面之前首先在代码层面实现 ui 的零散组件，后续开发除非临时需求或者特殊样式，使用这套 ui 库应当就能组合出所需要的页面。</p>
+<p>相对比较而言，最新的两种 css 都需要框架或者编译器的支撑，在普适性上不如前三者，但这两者不存在学习成本，上手比较容易。就目前使用体验来看，<code>BEM</code>具有高复用、高拓展、易维护、易阅读、无捆绑，但由于其需要一定的学习成本和实践摸索，想要用好有一定难度。</p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
     
 
 
@@ -490,160 +626,6 @@
 <p>当前官方提供的 ts 插件<code>rollup-plugin-typescript</code>不会做类型检查以及<code>threejs</code>的一些插件引用问题，故而没有采用 rollup</p>
 <p>rollup 打包出来的文件默认是未压缩的，这里采用的是 <code>terser</code>进行的压缩，只需在 <code>package.josn</code> 中进行如下设置即可：</p>
 <figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="attr">"scripts"</span>: &#123;</span><br><span class="line">    <span class="attr">"build"</span>: <span class="string">"rollup --config &amp;&amp; terser dist/xxx.js -o dist/xxx.min.js"</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="blog.a331.info/2019/02/18/JS%E5%87%BD%E6%95%B0%E5%BC%8F%E7%BC%96%E7%A8%8B01/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="陈龙">
-      <meta itemprop="description" content="知识总结">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="陈龙·今朝">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2019/02/18/JS%E5%87%BD%E6%95%B0%E5%BC%8F%E7%BC%96%E7%A8%8B01/" class="post-title-link" itemprop="url">JS函数式编程01</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2019-02-18 22:21:16" itemprop="dateCreated datePublished" datetime="2019-02-18T22:21:16+08:00">2019-02-18</time>
-    </span>
-      <span class="post-meta-item">
-        <span class="post-meta-item-icon">
-          <i class="far fa-calendar-check"></i>
-        </span>
-        <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2020-07-23 13:18:04" itemprop="dateModified" datetime="2020-07-23T13:18:04+08:00">2020-07-23</time>
-      </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/javascript/" itemprop="url" rel="index"><span itemprop="name">javascript</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p>函数式编程在刚接触 js 的时候便听说了，16 年下半年便买了书来看，不过一直都不得甚解，现在再回过头来看看，慢慢理解</p>
-<h2 id="函数式编程技术"><a href="#函数式编程技术" class="headerlink" title="函数式编程技术"></a>函数式编程技术</h2><ol>
-<li>确定抽象，并为其构建函数。</li>
-<li>利用已有的函数来构建更为复杂的抽象。</li>
-<li>通过将现有的函数传给其他的函数来构建更加复杂的抽象。</li>
-</ol>
-<h2 id="高阶函数"><a href="#高阶函数" class="headerlink" title="高阶函数"></a>高阶函数</h2><p>一个高阶函数应该可以执行下列至少一项操作：</p>
-<ol>
-<li>以一个函数作为参数。</li>
-<li>返回一个函数作为结果。</li>
-<li>他是一等公民</li>
-</ol>
-<h3 id="一等公民函数"><a href="#一等公民函数" class="headerlink" title="一等公民函数"></a>一等公民函数</h3><ol>
-<li>可以存储在变量中。</li>
-<li>可以被存储在数组中的插槽中</li>
-<li>可以存储在对象的字段中</li>
-<li>可以根据需要来创建</li>
-<li>可以被传递到其他函数中</li>
-<li>可以被其他函数</li>
-</ol>
-<h2 id="函数、方法"><a href="#函数、方法" class="headerlink" title="函数、方法"></a>函数、方法</h2><p>函数：独立存在的函数。 方法：在对象的上下文中创建出来的函数。</p>
-<h2 id="Applicarive-编程"><a href="#Applicarive-编程" class="headerlink" title="Applicarive 编程"></a>Applicarive 编程</h2><p>函数 A 作为参数提供给函数 B，其衍生出来的集合中心编程的理念：用 100 个函数操作一个数据结构，比用 10 个函数操作 10 个数据结构要好。</p>
-<h2 id="函数抽象思考"><a href="#函数抽象思考" class="headerlink" title="函数抽象思考"></a>函数抽象思考</h2><p>以 repeat 函数为例，它以一个数字和一个值为参数，将该值进行多次赋值，并放入一个数组中:</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">repeat</span>(<span class="params">time, VALUE</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> _.map(_.range(times), <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> VALUE</span><br><span class="line">  &#125;)</span><br><span class="line">&#125;</span><br><span class="line">repeat(<span class="number">4</span>, <span class="string">'major'</span>)</span><br><span class="line"><span class="comment">// =&gt; ['major', 'major','major','major']</span></span><br></pre></td></tr></table></figure>
-
-<p>将一个值重复多次是可以的，但将运算重复多次则更好，下面改进一下</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">repeatedly</span>(<span class="params">time, fun</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> _.map(_.range(times), fun)</span><br><span class="line">&#125;</span><br><span class="line">repeatedly(<span class="number">3</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="built_in">Math</span>.floor(<span class="built_in">Math</span>.random() * <span class="number">10</span> + <span class="number">1</span>)</span><br><span class="line">&#125;)</span><br><span class="line"><span class="comment">// =&gt; [1,3,8]</span></span><br></pre></td></tr></table></figure>
-
-<p>函数<code>repeatedly</code>是展示函数式思维方式力量的一个很好的例证。通过将参数从值替换为函数，在调用端，我们可以用一个可以填充任何东西的数组来替换一个固定的值。</p>
-<p>我们将一个在<code>repeat</code>中使用静态值的函数变成了一个接受函数的<code>repeatedly</code>函数，这确实使<code>repeatedly</code>更加开放，但它的通用性仍没有达到期望。我们仍需要一个确定需要调用给定的函数多少次的数值。我们常常会准确地知道函数应该被调用多少次，但有时候退出并不取决于“次数”，而是条件。我们可以定义另一个名为<code>iterateUntil</code>的</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">iterateUntil</span>(<span class="params">fun, check, init</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> ret = []</span><br><span class="line">  <span class="keyword">var</span> result = fun(init)</span><br><span class="line">  <span class="keyword">while</span> (check(result)) &#123;</span><br><span class="line">    ret.push(result)</span><br><span class="line">    result = fun(result)</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> ret</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>函数<code>iterateUntil</code>接收两个函数：一个用来执行一些动作，另外一个用来结果检查，当结果满足“结束”值时返回<code>false</code>。这算得上是真正的将<code>repeatedly</code>带到一个新的水平，现在甚至连重复的次数都是开放的，受到一个函数执行结果的影响。下面是使用该函数的一个实例：</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">iterateUntil(</span><br><span class="line">  <span class="function"><span class="keyword">function</span>(<span class="params">n</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> n + n</span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="function"><span class="keyword">function</span>(<span class="params">n</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> n &lt;= <span class="number">1024</span></span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="number">1</span></span><br><span class="line">)</span><br><span class="line"><span class="comment">//=&gt; [2,4,8,16,32,64,128,256,512,1024</span></span><br></pre></td></tr></table></figure>
-
-<p>正如你所知，在使用<code>repeatdly</code>来实现相同的功能之前，为了得到正确的结果数组，需要提前确定调用为我们的函数的次数，如下：</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">repeatedly(<span class="number">10</span>, <span class="function"><span class="keyword">function</span>(<span class="params">exp</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="built_in">Math</span>.pow(<span class="number">2</span>, exp + <span class="number">1</span>)</span><br><span class="line">&#125;)</span><br><span class="line"><span class="comment">//=&gt; [2,4,8,16,32,64,128,256,512,102</span></span><br></pre></td></tr></table></figure>
-
-<p>有时候，你可能知道需要计算多少次，但有时候你只知道计算何时停止。<code>iterateUntil</code>提供的另外一个优点是，循环体是一个前馈函数，即一些函数的执行结果被当做下一个函数的参数。</p>
-<h2 id="返回其他函数的函数"><a href="#返回其他函数的函数" class="headerlink" title="返回其他函数的函数"></a>返回其他函数的函数</h2><p>下面函数使用了一个忽略其参数并仅仅返回一个常量的函数：</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">repeatedly(<span class="number">3</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="string">'Odelay!'</span></span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
-
-<p>这种返回一个常量的函数非常有用，所以几乎是函数式编程的一个设计模式，经常被简称为 k。其实现方式为下：</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">k</span>(<span class="params">VALUE</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> VALUE</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p><code>k</code>的行为可以用来解释闭包的一些关键点。首先，闭包会捕获一个值，并多次返回相同的值</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> f = k(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;&#125;)</span><br><span class="line">f() === f</span><br><span class="line"><span class="comment">// =&gt; true</span></span><br></pre></td></tr></table></figure>
-
-<p>该函数总是产生一个确定的值。接下来用 k 来替换之前的匿名函数，会更加简洁一些：</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">repeatedly(<span class="number">3</span>, k(<span class="string">'Odelay'</span>))</span><br></pre></td></tr></table></figure>
-
-<p>像<code>k</code>这样的函数被称为组合子</p>
-<h2 id="柯里化"><a href="#柯里化" class="headerlink" title="柯里化"></a>柯里化</h2><p>柯里化的编程思想是使用一个函数来构建一个新的函数。柯里化函数逐渐返回消耗参数的函数，直到所有的参数耗尽柯里化从右往左比较好，像 javascript 这样的语言，可以通过任意数量的参数，从右到左让你能修复可选参数的值。下面的例子可以说明参数方向选择的差异：</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">letfCurryDiv</span>(<span class="params">n</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="function"><span class="keyword">function</span>(<span class="params">d</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> n / d</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">rightCurryDiv</span>(<span class="params">d</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="function"><span class="keyword">function</span>(<span class="params">n</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> n / d</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>使用除法运算很好的说明了柯里化方向的区别，因为结果会因为参数顺序而变化。观察 <code>letfCurryDiv</code> 函数如何柯里化参数产生结果的：</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> divide10by = leftCurryDiv(<span class="number">10</span>)</span><br></pre></td></tr></table></figure>
-
-<p>函数以<code>10</code>参数<code>10</code>初始化并命名<code>divide10By</code>，该函数配置为做<code>10/?</code>操作，其中?是下次调用时最右边的参数：</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">divide10by(<span class="number">2</span>)</span><br><span class="line"><span class="comment">// =&gt; 5</span></span><br></pre></td></tr></table></figure>
-
-<p>第二次调用柯里函数开始执行 10/2 操作。然而，如果使用 rightCurryDiv 函数，情况就完全不一样:</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> divideBy10 = rightCurryDiv(<span class="number">10</span>)</span><br></pre></td></tr></table></figure>
-
-<p>现在命名为 divideBy10 的柯里函数体变化?/10，在执行前等待最左边的参数：</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">divideBy10(<span class="number">2</span>)</span><br><span class="line"><span class="comment">// =&gt;0.2</span></span><br></pre></td></tr></table></figure>
-
-<p>上述用法都是手动柯里化，下面是一个自动柯里化参数的例子，这是一个简单的高阶函数，他接受一个函数，并返回一个只接收一个参数的函数，将其命名为<code>curry</code>，实现如下：</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">curry</span>(<span class="params">fun</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="function"><span class="keyword">function</span>(<span class="params">arg</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> fun(arg)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p><code>curry</code>的操作可以概括为：接受一个函数，返回一个只接收一个参数的函数</p>
-<p>这似乎是一个相当没用的函数，在许多函数式编程语言中，很少有令人信服的理由来提供一个像 curry 这样无修饰的代理，javascript 中，函数可能会接收期望之外的“特化”参数。例如：javascript 函数 parseInt 接受一个字符串并返回其相应的整数，此外其还可以接受一个可选的第二参数。</p>
-<p>柯里化两参数和三参数的函数：</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 柯里化两参数</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">curry2</span>(<span class="params">fun</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="function"><span class="keyword">function</span>(<span class="params">secondArg</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="function"><span class="keyword">function</span>(<span class="params">firstArg</span>) </span>&#123;</span><br><span class="line">      <span class="keyword">return</span> fun(firstArg, secondArg)</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 柯里化三参数</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">curry3</span>(<span class="params">fun</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="function"><span class="keyword">function</span>(<span class="params">last</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="function"><span class="keyword">function</span>(<span class="params">middle</span>) </span>&#123;</span><br><span class="line">      <span class="keyword">return</span> <span class="function"><span class="keyword">function</span>(<span class="params">first</span>) </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> fun(first, middle, last)</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
       
     </div>

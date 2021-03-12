@@ -176,16 +176,16 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">25</span>
+          <span class="site-state-item-count">26</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
-        <span class="site-state-item-count">14</span>
+        <span class="site-state-item-count">15</span>
         <span class="site-state-item-name">分类</span>
       </div>
       <div class="site-state-item site-state-tags">
-        <span class="site-state-item-count">24</span>
+        <span class="site-state-item-count">25</span>
         <span class="site-state-item-name">标签</span>
       </div>
   </nav>
@@ -226,6 +226,97 @@
       
 
       
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="blog.a331.info/2019/04/12/react%E8%84%9A%E6%89%8B%E6%9E%B6/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="陈龙">
+      <meta itemprop="description" content="知识总结">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="陈龙·今朝">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2019/04/12/react%E8%84%9A%E6%89%8B%E6%9E%B6/" class="post-title-link" itemprop="url">react脚手架</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2019-04-12 09:04:45" itemprop="dateCreated datePublished" datetime="2019-04-12T09:04:45+08:00">2019-04-12</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">更新于</span>
+        <time title="修改时间：2020-07-23 13:18:04" itemprop="dateModified" datetime="2020-07-23T13:18:04+08:00">2020-07-23</time>
+      </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/react/" itemprop="url" rel="index"><span itemprop="name">react</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p>最近有机会研究了一下<code>wieldy-react</code>，也算是颇有收获，结合之前创建脚手架的经验，个人依据<code>wieldy-react</code>尝试创建了一个<code>react</code>工程。</p>
+<p>工程目录如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br></pre></td><td class="code"><pre><span class="line">src                               &#x2F;&#x2F; 源码根目录</span><br><span class="line">|   index.js                      &#x2F;&#x2F; 主入口</span><br><span class="line">|   NextApp.js                    &#x2F;&#x2F; 次入口</span><br><span class="line">|   serviceWorker.js</span><br><span class="line">|</span><br><span class="line">+---apis</span><br><span class="line">|       api.js                     &#x2F;&#x2F; 接口</span><br><span class="line">|</span><br><span class="line">+---appRedux                       &#x2F;&#x2F; 状态管理</span><br><span class="line">|   +---actions</span><br><span class="line">|   |       Auth.js</span><br><span class="line">|   |       Chat.js</span><br><span class="line">|   |       index.js</span><br><span class="line">|   |</span><br><span class="line">|   +---reducers</span><br><span class="line">|   |       Auth.js</span><br><span class="line">|   |       Chat.js</span><br><span class="line">|   |       index.js</span><br><span class="line">|   |</span><br><span class="line">|   +---sagas</span><br><span class="line">|   |       Auth.js</span><br><span class="line">|   |       Chat.js</span><br><span class="line">|   |       index.js</span><br><span class="line">|   |</span><br><span class="line">|   \---store                      &#x2F;&#x2F; store</span><br><span class="line">|           index.js</span><br><span class="line">|</span><br><span class="line">+---assets                         &#x2F;&#x2F; 资源文件夹</span><br><span class="line">|   \---images                     &#x2F;&#x2F; 图片资源</span><br><span class="line">+---components                     &#x2F;&#x2F; 无状态组件文件夹</span><br><span class="line">|   \---CircularProgress</span><br><span class="line">|           index.js</span><br><span class="line">|</span><br><span class="line">+---constants                      &#x2F;&#x2F; 常量配置</span><br><span class="line">|       ActionTypes.js</span><br><span class="line">|       DomainSetting.js</span><br><span class="line">|</span><br><span class="line">+---containers                     &#x2F;&#x2F; 有状态组件文件夹</span><br><span class="line">|   |   SignIn.js</span><br><span class="line">|   |   Socket.js</span><br><span class="line">|   |</span><br><span class="line">|   +---App</span><br><span class="line">|   |       index.js</span><br><span class="line">|   |       MainApp.js</span><br><span class="line">|   |</span><br><span class="line">|   +---Chat</span><br><span class="line">|   |       FriendList.js</span><br><span class="line">|   |       index.js</span><br><span class="line">|   |</span><br><span class="line">|   \---Sidebar</span><br><span class="line">|           index.js</span><br><span class="line">|</span><br><span class="line">+---helper                        &#x2F;&#x2F; 工具函数</span><br><span class="line">|       asyncComponent.js         &#x2F;&#x2F; 异步加载组件</span><br><span class="line">|</span><br><span class="line">+---routes                        &#x2F;&#x2F; 页面路由以及页面组件</span><br><span class="line">|   |   index.js</span><br><span class="line">|   |</span><br><span class="line">|   \---Chat</span><br><span class="line">|           index.js</span><br><span class="line">|</span><br><span class="line">\---style                         &#x2F;&#x2F; 样式</span><br><span class="line">    |   style.less</span><br><span class="line">    |</span><br><span class="line">    +---base                      &#x2F;&#x2F; 基础样式</span><br><span class="line">    |       base.less</span><br><span class="line">    |       index.less</span><br><span class="line">    |</span><br><span class="line">    +---global                    &#x2F;&#x2F; 全局样式</span><br><span class="line">    |       index.less</span><br><span class="line">    |       mixin.less</span><br><span class="line">    |       variables.less</span><br><span class="line">    |</span><br><span class="line">    \---layout                    &#x2F;&#x2F; 布局样式</span><br><span class="line">            ant-layout.less       &#x2F;&#x2F; antd样式修改</span><br><span class="line">            index.less</span><br></pre></td></tr></table></figure>
+
+<p>相比较我之前搭建的脚手架主要的不同点主要有如下几点：</p>
+<ul>
+<li>将路由集成到了 redux 之中</li>
+<li>组件拆分到了三个目录当中，分别为<code>components</code>，<code>containers</code>，<code>routes</code>，分别存放无状态组件，有状态容器和路由。</li>
+</ul>
+<h2 id="局部热更新"><a href="#局部热更新" class="headerlink" title="局部热更新"></a>局部热更新</h2><p>虽然<code>Create React App</code>已经实现了热更新，但每次修改之后都需要整个重新刷新页面，但很多时候我们只修改了局部的一小块，刷新整个页面会造成不必要的性能浪费，因此可以使用<code>react-hot-loader</code>来实现局部刷新。</p>
+<p>总体来说，这套开发模式比我之前的个人认为是一种进步，如果对具体细节感兴趣，<a href="https://github.com/1016482011/chat/tree/save/template" target="_blank" rel="noopener">请移步</a></p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
     
 
 
@@ -500,142 +591,6 @@
 
 <p>点击 id 为<code>container</code>的元素是会打印出<code>getFirstIntersection</code>方法返回的结果。</p>
 <p>当然这只是<code>EventDispatcher</code>一种使用情景，你也可以使用它来为一个<code>class</code>或者函数制定自定义函数等等。在封装一些组件中非常好用。</p>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="blog.a331.info/2019/03/06/css%E6%A8%A1%E5%9D%97%E5%8C%96/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="陈龙">
-      <meta itemprop="description" content="知识总结">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="陈龙·今朝">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2019/03/06/css%E6%A8%A1%E5%9D%97%E5%8C%96/" class="post-title-link" itemprop="url">css模块化</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2019-03-06 22:21:16" itemprop="dateCreated datePublished" datetime="2019-03-06T22:21:16+08:00">2019-03-06</time>
-    </span>
-      <span class="post-meta-item">
-        <span class="post-meta-item-icon">
-          <i class="far fa-calendar-check"></i>
-        </span>
-        <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2020-07-23 13:18:04" itemprop="dateModified" datetime="2020-07-23T13:18:04+08:00">2020-07-23</time>
-      </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/css/" itemprop="url" rel="index"><span itemprop="name">css</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p>目前主流的 css 规范大致可以分为<code>OOCSS</code>、<code>SMACSS</code>、<code>BEM</code>、<code>CSS Modules</code>、<code>CSS in JS</code></p>
-<p>在以往写 css 的时候比较随意，加上平时主要精力都在<code>js</code>开发上，对 css 的写法知之甚少，但随着工作时间的增加（快一年了），发现自己一直在重复的写一些 css 代码，并且这些代码维护起来也比较困难，每次需要改一个样式时，都需要在浏览器中使用控制台的<code>Element</code>查看需要修改区域的<code>dom</code>的<code>class</code>，然后通过在<code>css</code>中进行搜索才能定位到问题样式所在。从我个人开发体验上来讲，感到明显的效率低下和维护困难。</p>
-<p>后来在学习的过程中发现了<code>less</code>和<code>sass</code>，但这两个<code>css</code>的预编译框架并没有在写法上提出严格的限制，之前的问题依旧存在。</p>
-<h2 id="OOCSS"><a href="#OOCSS" class="headerlink" title="OOCSS"></a>OOCSS</h2><p>全称<code>Object Oriented CSS</code>，中文为面向对象 css，其主要有两个原则：</p>
-<ol>
-<li><code>Separation of Structure from Skin</code> 独立的结构和样式</li>
-<li><code>Separation of Containers and Content</code> 独立的容器和内容</li>
-</ol>
-<p>所谓结构就是元素的大小，样式指颜色等等，第二点即是指将 html 与 css 进行分离，并对 class 进行抽象剥离，我的理解就是，不要将 class 与你具体页面做关联，比如你在开发<code>home</code>页，在实现其中的导航时，class 命名不要带上<code>home</code></p>
-<p><code>OOCSS</code>的典型代表为<code>Bootstrap</code>，以其<code>button</code>为例：</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">button</span> <span class="attr">type</span>=<span class="string">"button"</span> <span class="attr">class</span>=<span class="string">"btn btn-primary btn-lg btn-block"</span>&gt;</span></span><br><span class="line">  button</span><br><span class="line"><span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<p>可以很容易的看出，其主要分为其他几部分</p>
-<ol>
-<li><code>btn</code>：标准按钮样式</li>
-<li><code>btn-primary</code>：按钮颜色</li>
-<li><code>btn-lg</code>：按钮大小</li>
-<li><code>btn-block</code>：展示为块级按钮</li>
-</ol>
-<p>通过不同的<code>class</code>组合，就可以形成多种按钮</p>
-<p><code>OOCSS</code>的优点如下：</p>
-<ol>
-<li>减少 css 代码</li>
-<li>html 标记简洁，逻辑性强</li>
-<li>语义标记，有利于 SEO</li>
-<li>由于各种 class 可重用，页面加载更快</li>
-<li>拓展性强，不用担心加入的新组件会破坏原有的组件</li>
-<li>有利于维护</li>
-</ol>
-<p>同时<code>OOCSS</code>使用时需要注意如下几点：</p>
-<ol>
-<li><code>OOCSS</code>主要用于大型网站开发，组件复用情况多</li>
-<li><code>OOCSS</code>在整体规划上难度颇高，需要有一定的经验的积累，如果使用不当，将会毫无复用性可言，维护也将异常艰难</li>
-<li>每个组件都需要一个完善的文档</li>
-</ol>
-<h2 id="SMACSS"><a href="#SMACSS" class="headerlink" title="SMACSS"></a>SMACSS</h2><p>了解不多，其通则为：</p>
-<ol>
-<li>结构分类：Base、Layout、Moudule、State、Theme</li>
-<li>命名规则：id 与 class 受限制的使用，名称之间使用分隔线</li>
-</ol>
-<h2 id="BEM"><a href="#BEM" class="headerlink" title="BEM"></a>BEM</h2><p><code>BEM</code>全称<code>Block Element Modifier</code>，<code>BEM</code>吸收了<code>OOCSS</code>的优点，并将 class 分块语义化，在可读性和维护性上个人认为高于<code>OOCSS</code></p>
-<p><code>BEM</code>是目前我在实际开发中使用体验最好的一个规范，由于<code>BEM</code>只是一个规范，有些部分并没有做强制要求，实际使用时我会根据自身经验和项目情况做一些调整，以当前项目使用情况为例：</p>
-<p>styles 文件夹的文件可分为四块</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">index.less</span><br><span class="line">lib - lay.less</span><br><span class="line">mod - modal.less</span><br><span class="line">pag - home.less</span><br></pre></td></tr></table></figure>
-
-<p><code>lib</code>开头的是一些基础的样式或者颜色字体等变量，通用布局和样式重置等，<code>mod</code>是各个组件样式，<code>pag</code>是页面内特殊样式</p>
-<p>以 modal 为例：</p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.m-modal</span> &#123;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.m-modal__header</span> &#123;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.m-modal__body</span> &#123;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.m-modal__body--nofooter</span> &#123;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.m-modal__footer</span> &#123;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p><code>m-modal</code>是<code>Block</code>，<code>header</code>、<code>body</code>、<code>footer</code>是<code>Element</code>，<code>nofooter</code>为<code>Modifier</code>，B 与 M 之间使用<code>__</code>分隔，E 与 M 之间使用<code>--</code>分隔，class 在命名时，最多三段，相比其他规范在保持简短的同时提供了 class 的可读性。</p>
-<p>每个模块之间都是独立的，以组件进行开发，这点与<code>OOCSS</code>很像，<code>BEM</code>可复用性好。另外<code>BEM</code>是功能为导向的，每个模块代表着某个功能，不会出现<code>OOCSS</code>或者<code>SMASS</code>中像<code>.pt-20</code>(<code>padding-top:20px</code>)这种让别人看不懂的名称。</p>
-<p>有关 BEM 注意事项可见<a href="https://www.smashingmagazine.com/2016/06/battling-bem-extended-edition-common-problems-and-how-to-avoid-them/" target="_blank" rel="noopener">这里</a></p>
-<h2 id="CSS-Modules"><a href="#CSS-Modules" class="headerlink" title="CSS Modules"></a>CSS Modules</h2><p>在 react 和 vue 中使用过，其做法是给 class 后拼上一串 hash 值，以此保证样式名称不会冲突</p>
-<h2 id="CSS-in-JS"><a href="#CSS-in-JS" class="headerlink" title="CSS in JS"></a>CSS in JS</h2><p>代表为<a href="https://github.com/styled-components/styled-components" target="_blank" rel="noopener">styled-components</a>，即将样式写到组件内部。</p>
-<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p><code>OOCSS</code>和<code>BEM</code>的实施离不开 ui 设计，在开发之前，ui 需要有自己的一套组件库（图片），开发应当在开发具体页面之前首先在代码层面实现 ui 的零散组件，后续开发除非临时需求或者特殊样式，使用这套 ui 库应当就能组合出所需要的页面。</p>
-<p>相对比较而言，最新的两种 css 都需要框架或者编译器的支撑，在普适性上不如前三者，但这两者不存在学习成本，上手比较容易。就目前使用体验来看，<code>BEM</code>具有高复用、高拓展、易维护、易阅读、无捆绑，但由于其需要一定的学习成本和实践摸索，想要用好有一定难度。</p>
 
       
     </div>
