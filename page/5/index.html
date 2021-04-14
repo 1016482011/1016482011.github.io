@@ -176,7 +176,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">26</span>
+          <span class="site-state-item-count">27</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -185,7 +185,7 @@
         <span class="site-state-item-name">分类</span>
       </div>
       <div class="site-state-item site-state-tags">
-        <span class="site-state-item-count">25</span>
+        <span class="site-state-item-count">26</span>
         <span class="site-state-item-name">标签</span>
       </div>
   </nav>
@@ -226,6 +226,106 @@
       
 
       
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="blog.a331.info/2019/04/22/react%E5%BC%80%E5%8F%91%E6%80%BB%E7%BB%9301/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="陈龙">
+      <meta itemprop="description" content="知识总结">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="陈龙·今朝">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2019/04/22/react%E5%BC%80%E5%8F%91%E6%80%BB%E7%BB%9301/" class="post-title-link" itemprop="url">react工作的一些总结</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2019-04-22 09:08:16" itemprop="dateCreated datePublished" datetime="2019-04-22T09:08:16+08:00">2019-04-22</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">更新于</span>
+        <time title="修改时间：2020-07-23 13:18:04" itemprop="dateModified" datetime="2020-07-23T13:18:04+08:00">2020-07-23</time>
+      </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/react/" itemprop="url" rel="index"><span itemprop="name">react</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h2 id="Modal"><a href="#Modal" class="headerlink" title="Modal"></a>Modal</h2><p>根据<a href="https://react.docschina.org/docs/portals.html" target="_blank" rel="noopener">文档描述</a>，portals 可以将子节点渲染到父节点之外的 DOM 当中，这在子组件需要“跳出”容器时非常有用，例如模态框。</p>
+<p>其实现核心代码简单如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">import React from &#39;react&#39;;</span><br><span class="line">import ReactDOM from &#39;react-dom&#39;;</span><br><span class="line">import &#123; Modal as ModalContainer, Props as ModalProps &#125; from &#39;.&#x2F;Modal&#39;;</span><br><span class="line"></span><br><span class="line">interface Props extends ModalProps &#123;&#125;</span><br><span class="line"></span><br><span class="line">interface State &#123;&#125;</span><br><span class="line"></span><br><span class="line">class Modal extends React.Component&lt;Props, State&gt; &#123;</span><br><span class="line">  constructor(props: Props) &#123;</span><br><span class="line">    super(props);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  private el &#x3D; document.createElement(&#39;div&#39;);</span><br><span class="line"></span><br><span class="line">  componentDidMount() &#123;</span><br><span class="line">    document.body.appendChild(this.el);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  render() &#123;</span><br><span class="line">    return ReactDOM.createPortal(&lt;ModalContainer &#123;...this.props&#125; &#x2F;&gt;, this.el);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">export &#123; Modal &#125;;</span><br></pre></td></tr></table></figure>
+
+<h2 id="将-src-加入引入路径"><a href="#将-src-加入引入路径" class="headerlink" title="将 src 加入引入路径"></a>将 src 加入引入路径</h2><p>当文件嵌套过深时，可能会存在这样的路径引入-<code>../../../</code>，这种相对路径的引入方式可能会对代码阅读造成困扰，一时间不知道文件具体路径在哪(如果编辑器没有<code>ctrl+左键</code>自动寻址的话)，另外可能有些人也会觉得不太美观，因此可采取的将<code>src</code>将入 node 的引入路径下，具体配置如下：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> path = <span class="built_in">require</span>(<span class="string">'path'</span>);</span><br><span class="line"><span class="keyword">const</span> &#123; override &#125; = <span class="built_in">require</span>(<span class="string">'customize-cra'</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> overrideProcessEnv = <span class="function"><span class="params">()</span> =&gt;</span> <span class="function"><span class="params">config</span> =&gt;</span> &#123;</span><br><span class="line">  config.resolve.modules = [path.join(__dirname, <span class="string">'src'</span>)].concat(</span><br><span class="line">    config.resolve.modules</span><br><span class="line">  );</span><br><span class="line">  <span class="keyword">return</span> config;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="built_in">module</span>.exports = override(overrideProcessEnv());</span><br></pre></td></tr></table></figure>
+
+<h2 id="autocompelete"><a href="#autocompelete" class="headerlink" title="autocompelete"></a>autocompelete</h2><p>在开发 react 表单的时候经常会遇到一个很麻烦的事情，那就是在我不需要的地方，浏览器也给我自动填充了用户名和密码，并且设置<code>autoComplete=&quot;off&quot;</code>无效。</p>
+<p>可采用如下方式进行最简单的处理：</p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;Input autoComplete=<span class="string">"new-password"</span> type=<span class="string">"password"</span> placeholder=<span class="string">"Password"</span> /&gt;</span><br></pre></td></tr></table></figure>
+
+<h2 id="路由用法"><a href="#路由用法" class="headerlink" title="路由用法"></a>路由用法</h2><p>match 即为上级路由，在使用此路由时传入，此种路由不同于 hash 路由，不存在<code>#</code>。</p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> App = <span class="function">(<span class="params">&#123; match &#125;</span>) =&gt;</span> (</span><br><span class="line">  &lt;div&gt;</span><br><span class="line">    &lt;Switch&gt;</span><br><span class="line">      &lt;Route</span><br><span class="line">        path=&#123;<span class="string">`<span class="subst">$&#123;match.url&#125;</span>ChatRoom`</span>&#125;</span><br><span class="line">        component=&#123;asyncComponent(<span class="function"><span class="params">()</span> =&gt;</span> <span class="keyword">import</span>(<span class="string">'./Chat'</span>))&#125;</span><br><span class="line">      /&gt;</span><br><span class="line">      &lt;Route</span><br><span class="line">        path=&#123;match.url&#125;</span><br><span class="line">        render=&#123;props =&gt; (</span><br><span class="line">          &lt;Redirect</span><br><span class="line">            to=&#123;&#123;</span><br><span class="line">              pathname: <span class="string">'/ChatRoom'</span>,</span><br><span class="line">              state: &#123; <span class="attr">from</span>: props.location &#125;</span><br><span class="line">            &#125;&#125;</span><br><span class="line">          /&gt;</span><br><span class="line">        )&#125;</span><br><span class="line">      /&gt;</span><br><span class="line">    &lt;<span class="regexp">/Switch&gt;</span></span><br><span class="line"><span class="regexp">  &lt;/</span>div&gt;</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
+
+<h2 id="动态加载路由组件"><a href="#动态加载路由组件" class="headerlink" title="动态加载路由组件"></a>动态加载路由组件</h2><p>在上面路由用法中使用的<code>asyncComponent</code>为动态的加载组件，避免首页加载时间过长，可用此种方式进行异步加载。</p>
+<p>实现代码如下：</p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> React, &#123; Component &#125; <span class="keyword">from</span> <span class="string">'react'</span>;</span><br><span class="line"><span class="keyword">import</span> Nprogress <span class="keyword">from</span> <span class="string">'nprogress'</span>;</span><br><span class="line"><span class="keyword">import</span> ReactPlaceholder <span class="keyword">from</span> <span class="string">'react-placeholder'</span>;</span><br><span class="line"><span class="keyword">import</span> <span class="string">'nprogress/nprogress.css'</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> <span class="string">'react-placeholder/lib/reactPlaceholder.css'</span>;</span><br><span class="line"><span class="keyword">import</span> CircularProgress <span class="keyword">from</span> <span class="string">'components/CircularProgress'</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="function"><span class="keyword">function</span> <span class="title">asyncComponent</span>(<span class="params">importComponent</span>) </span>&#123;</span><br><span class="line">  <span class="class"><span class="keyword">class</span> <span class="title">AsyncFunc</span> <span class="keyword">extends</span> <span class="title">Component</span> </span>&#123;</span><br><span class="line">    <span class="keyword">constructor</span>(props) &#123;</span><br><span class="line">      <span class="keyword">super</span>(props);</span><br><span class="line">      <span class="keyword">this</span>.state = &#123;</span><br><span class="line">        component: <span class="literal">null</span></span><br><span class="line">      &#125;;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    componentWillMount() &#123;</span><br><span class="line">      Nprogress.start();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    componentWillUnmount() &#123;</span><br><span class="line">      <span class="keyword">this</span>.mounted = <span class="literal">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">async</span> componentDidMount() &#123;</span><br><span class="line">      <span class="keyword">this</span>.mounted = <span class="literal">true</span>;</span><br><span class="line">      <span class="keyword">const</span> &#123; <span class="attr">default</span>: Component &#125; = <span class="keyword">await</span> importComponent();</span><br><span class="line">      Nprogress.done();</span><br><span class="line">      <span class="keyword">if</span> (<span class="keyword">this</span>.mounted) &#123;</span><br><span class="line">        <span class="keyword">this</span>.setState(&#123;</span><br><span class="line">          component: <span class="xml"><span class="tag">&lt;<span class="name">Component</span> &#123;<span class="attr">...this.props</span>&#125; /&gt;</span></span></span><br><span class="line">        &#125;);</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    render() &#123;</span><br><span class="line">      <span class="keyword">const</span> Component = <span class="keyword">this</span>.state.component || <span class="xml"><span class="tag">&lt;<span class="name">CircularProgress</span> /&gt;</span></span>;</span><br><span class="line">      <span class="keyword">return</span> (</span><br><span class="line">        &lt;ReactPlaceholder type=<span class="string">"text"</span> rows=&#123;<span class="number">7</span>&#125; ready=&#123;Component !== <span class="literal">null</span>&#125;&gt;</span><br><span class="line">          &#123;Component&#125;</span><br><span class="line">        &lt;<span class="regexp">/ReactPlaceholder&gt;</span></span><br><span class="line"><span class="regexp">      );</span></span><br><span class="line"><span class="regexp">    &#125;</span></span><br><span class="line"><span class="regexp">  &#125;</span></span><br><span class="line"><span class="regexp"></span></span><br><span class="line"><span class="regexp">  return AsyncFunc;</span></span><br><span class="line"><span class="regexp">&#125;</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="登录认证"><a href="#登录认证" class="headerlink" title="登录认证"></a>登录认证</h2><p>react 中实现根据 token 进行登录认证，也就是简单的判断 token 是否存在，如果不存在则跳转登录页。</p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 路由重定向</span></span><br><span class="line"><span class="keyword">const</span> RestrictedRoute = <span class="function">(<span class="params">&#123; component: Component, token, ...rest &#125;</span>) =&gt;</span> (</span><br><span class="line">  &lt;Route</span><br><span class="line">    &#123;...rest&#125;</span><br><span class="line">    render=&#123;props =&gt;</span><br><span class="line">      token ? (</span><br><span class="line">        &lt;Component &#123;...props&#125; /&gt;</span><br><span class="line">      ) : (</span><br><span class="line">        &lt;Redirect</span><br><span class="line">          to=&#123;&#123;</span><br><span class="line">            pathname: <span class="string">'/signin'</span>,</span><br><span class="line">            state: &#123; <span class="attr">from</span>: props.location &#125;</span><br><span class="line">          &#125;&#125;</span><br><span class="line">        /&gt;</span><br><span class="line">      )</span><br><span class="line">    &#125;</span><br><span class="line">  /&gt;</span><br><span class="line">);</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">App</span> <span class="keyword">extends</span> <span class="title">Component</span> </span>&#123;</span><br><span class="line">  render() &#123;</span><br><span class="line">    <span class="keyword">const</span> &#123; match, token &#125; = <span class="keyword">this</span>.props;</span><br><span class="line">    <span class="keyword">return</span> (</span><br><span class="line">      &lt;LocaleProvider locale=&#123;antdCN&#125;&gt;</span><br><span class="line">        &lt;Switch&gt;</span><br><span class="line">          &lt;Route exact path=<span class="string">"/signin"</span> component=&#123;() =&gt; <span class="xml"><span class="tag">&lt;<span class="name">div</span>&gt;</span>登录<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span>&#125; /&gt;</span><br><span class="line">          &lt;RestrictedRoute</span><br><span class="line">            path=&#123;<span class="string">`<span class="subst">$&#123;match.url&#125;</span>`</span>&#125;</span><br><span class="line">            token=&#123;token&#125;</span><br><span class="line">            component=&#123;() =&gt; <span class="xml"><span class="tag">&lt;<span class="name">div</span>&gt;</span>sd<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span>&#125;</span><br><span class="line">          /&gt;</span><br><span class="line">        &lt;<span class="regexp">/Switch&gt;</span></span><br><span class="line"><span class="regexp">      &lt;/</span>LocaleProvider&gt;</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
     
 
 
@@ -486,111 +586,6 @@
 </ol>
 <p>两种方法的本质都一样，都是将值和时间进行了拼接，在我现在看来这两个方法有个最大的问题就是修改了原来的值，在解析的时候往往是 bug 产生的源泉，因为你很难去预期使用者会传入什么值。</p>
 <p>后来在阅读了<a href="https://github.com/marcuswestin/store.js" target="_blank" rel="noopener">store.js</a>后，恍然大悟，<code>namespace</code>，我无法预期用户值的类型，但我可以预期 name 的类型，在 name 上加上一个同为 string 类型的命名空间便可解决这个问题。<code>set(&quot;username&quot;,&quot;Marcus&quot;,1553264048068)</code>，实际存为<code>localStorage.setItem(&quot;username&quot;:&quot;Marcus&quot;)</code>和<code>localStorage.setItem(&quot;expire_username&quot;:&quot;1553264048068&quot;)</code>。</p>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="blog.a331.info/2019/03/20/EventDispatcher/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="陈龙">
-      <meta itemprop="description" content="知识总结">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="陈龙·今朝">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2019/03/20/EventDispatcher/" class="post-title-link" itemprop="url">EventDispatcher</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2019-03-20 22:11:50" itemprop="dateCreated datePublished" datetime="2019-03-20T22:11:50+08:00">2019-03-20</time>
-    </span>
-      <span class="post-meta-item">
-        <span class="post-meta-item-icon">
-          <i class="far fa-calendar-check"></i>
-        </span>
-        <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2020-07-23 13:18:04" itemprop="dateModified" datetime="2020-07-23T13:18:04+08:00">2020-07-23</time>
-      </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/javascript/" itemprop="url" rel="index"><span itemprop="name">javascript</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p>最近在<a href="https://github.com/mrdoob/eventdispatcher.js/" target="_blank" rel="noopener">git</a>上看到一个事件分发的小插件，个人觉得非常有用。</p>
-<p>源代码如下：</p>
-<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="keyword">class</span> EventDispatcher &#123;</span><br><span class="line">  <span class="keyword">constructor</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="keyword">this</span>._listeners = &#123;&#125;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">private</span> _listeners: &#123; [<span class="keyword">type</span>: <span class="built_in">string</span>]: <span class="built_in">Array</span>&lt;<span class="function">(<span class="params">event: Event</span>) =&gt;</span> <span class="built_in">void</span>&gt; &#125;</span><br><span class="line">  addEventListener(<span class="keyword">type</span>, listener) &#123;</span><br><span class="line">    <span class="keyword">const</span> listeners = <span class="keyword">this</span>._listeners</span><br><span class="line">    <span class="keyword">if</span> (listeners[<span class="keyword">type</span>] === <span class="literal">undefined</span>) &#123;</span><br><span class="line">      listeners[<span class="keyword">type</span>] = []</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (listeners[<span class="keyword">type</span>].indexOf(listener) === <span class="number">-1</span>) &#123;</span><br><span class="line">      listeners[<span class="keyword">type</span>].push(listener)</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  hasEventListener(<span class="keyword">type</span>, listener) &#123;</span><br><span class="line">    <span class="keyword">const</span> listeners = <span class="keyword">this</span>._listeners</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> (</span><br><span class="line">      listeners[<span class="keyword">type</span>] !== <span class="literal">undefined</span> &amp;&amp; listeners[<span class="keyword">type</span>].indexOf(listener) !== <span class="number">-1</span></span><br><span class="line">    )</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  removeEventListener(<span class="keyword">type</span>, listener) &#123;</span><br><span class="line">    <span class="keyword">const</span> listeners = <span class="keyword">this</span>._listeners</span><br><span class="line">    <span class="keyword">const</span> listenerArray = listeners[<span class="keyword">type</span>]</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (listenerArray !== <span class="literal">undefined</span>) &#123;</span><br><span class="line">      <span class="keyword">const</span> index = listenerArray.indexOf(listener)</span><br><span class="line"></span><br><span class="line">      <span class="keyword">if</span> (index !== <span class="number">-1</span>) &#123;</span><br><span class="line">        listenerArray.splice(index, <span class="number">1</span>)</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  dispatchEvent(event) &#123;</span><br><span class="line">    <span class="keyword">const</span> listeners = <span class="keyword">this</span>._listeners</span><br><span class="line">    <span class="keyword">const</span> listenerArray = listeners[event.type]</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (listenerArray !== <span class="literal">undefined</span>) &#123;</span><br><span class="line">      event.target = <span class="keyword">this</span></span><br><span class="line"></span><br><span class="line">      <span class="keyword">const</span> array = listenerArray.slice(<span class="number">0</span>)</span><br><span class="line"></span><br><span class="line">      <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>, l = array.length; i &lt; l; i++) &#123;</span><br><span class="line">        array[i].call(<span class="keyword">this</span>, event)</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>源代码实现的很精简</p>
-<ul>
-<li><code>addEventListener</code>：绑定事件，<code>type</code>为事件类型，<code>listener</code>为事件回调函数。</li>
-<li><code>hasEventListener</code>：检查指定类型的回调函数是否存在。</li>
-<li><code>removeEventListener</code>：删除指定事件类型下的函数。</li>
-<li><code>dispatchEvent</code>：触发指定类型的事件，<code>event</code>为传给事件回调函数的参数。</li>
-</ul>
-<p>其用法也比较简单，如下是实际项目中使用代码：</p>
-<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; Measure &#125; <span class="keyword">from</span> <span class="string">'./tools'</span></span><br><span class="line"><span class="keyword">class</span> ModelTool <span class="keyword">extends</span> EventDispatcher &#123;</span><br><span class="line">  <span class="keyword">static</span> Measure = Measure</span><br><span class="line"></span><br><span class="line">  <span class="keyword">constructor</span>(<span class="params">el: HTMLDivElement | <span class="literal">null</span></span>) &#123;</span><br><span class="line">    <span class="keyword">super</span>()</span><br><span class="line">    <span class="keyword">this</span>.core = <span class="keyword">new</span> Core(el)</span><br><span class="line">    <span class="keyword">this</span>.eventBind()</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">public</span> eventBind() &#123;</span><br><span class="line">    <span class="keyword">this</span>.core.el.addEventListener(</span><br><span class="line">      <span class="string">'click'</span>,</span><br><span class="line">      e =&gt; &#123;</span><br><span class="line">        <span class="keyword">const</span> intersection = <span class="keyword">this</span>.core.getFirstIntersection(</span><br><span class="line">          e.clientX,</span><br><span class="line">          e.clientY</span><br><span class="line">        )</span><br><span class="line">        <span class="keyword">this</span>.dispatchEvent(&#123; <span class="keyword">type</span>: <span class="string">'click'</span>, event: e, intersection &#125;)</span><br><span class="line">      &#125;,</span><br><span class="line">      <span class="literal">false</span></span><br><span class="line">    )</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">private</span> core: Core</span><br><span class="line"></span><br><span class="line">  <span class="keyword">public</span> use = &lt;T <span class="keyword">extends</span> Tool&gt;(tool: T): <span class="function"><span class="params">T</span> =&gt;</span> &#123;</span><br><span class="line">    tool.core = <span class="keyword">this</span>.core</span><br><span class="line">    <span class="keyword">if</span> (!_.isNull(tool.action)) <span class="keyword">this</span>.addEventListener(<span class="string">'click'</span>, tool.action)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> tool</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">public</span> remove = <span class="function">(<span class="params">tool: Tool</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">if</span> (!_.isNull(tool.action)) <span class="keyword">this</span>.removeEventListener(<span class="string">'click'</span>, tool.action)</span><br><span class="line">    tool.core = <span class="literal">null</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>在<code>eventBind</code>函数中，将<code>dom(el)</code>的事件进行了绑定，并在点击时分发类型为<code>click</code>的函数。</p>
-<p><code>use</code>函数是一个用来初始化插件的函数，并且会自动将插件内的函数绑定到点击事件之下。</p>
-<p><code>remove</code>是一个清除插件的函数，将插件的点击事件注销。</p>
-<p>假设<code>Measure</code>函数如下：</p>
-<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="keyword">class</span> Measure &#123;</span><br><span class="line">  <span class="keyword">public</span> core: Core | <span class="literal">null</span> = <span class="literal">null</span></span><br><span class="line"></span><br><span class="line">  <span class="keyword">public</span> action: <span class="function">(<span class="params">e: ClickEvent</span>) =&gt;</span> <span class="built_in">void</span> = <span class="function"><span class="params">e</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(e.intersection)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>使用如下：</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> modeltool = <span class="keyword">new</span> ModelTool(<span class="built_in">document</span>.getElementById(<span class="string">'container'</span>))</span><br><span class="line">modelTool.use(<span class="keyword">new</span> ModelTool.Measure())</span><br></pre></td></tr></table></figure>
-
-<p>点击 id 为<code>container</code>的元素是会打印出<code>getFirstIntersection</code>方法返回的结果。</p>
-<p>当然这只是<code>EventDispatcher</code>一种使用情景，你也可以使用它来为一个<code>class</code>或者函数制定自定义函数等等。在封装一些组件中非常好用。</p>
 
       
     </div>
